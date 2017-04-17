@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EE461LProject</string>
+    <string name="main_feed">Main feed</string>
 </resources>

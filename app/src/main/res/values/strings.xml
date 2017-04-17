@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">EE461LProject</string>
     <string name="main_feed">Main feed</string>
+    <string name="title_activity_organization_name">Organization</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

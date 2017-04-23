@@ -2,6 +2,7 @@ package com.example.ee461lproject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by ezuec on 4/22/2017.
@@ -15,7 +16,29 @@ public class Event {
     private Date date;
     private String location;
     private String description;
-    private ArrayList<String> rsvpList;
+    private HashMap<String, Boolean> rsvpList;
+
+    public ArrayList<String> getRSVPList(){
+        ArrayList<String> rsvp = new ArrayList<String>();
+
+        for(String s : rsvpList.keySet()){
+            if(rsvpList.get(s) == true){
+                rsvp.add(s);
+            }
+        }
+
+        return rsvp;
+    }
+
+    public boolean isInRSVPList(String user){
+        if(rsvpList.containsKey(user)){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
 
     public Event(String eventName, String organizer, Date date, String location, String description) {
         this.eventName = eventName;
@@ -23,15 +46,26 @@ public class Event {
         this.date = date;
         this.location = location;
         this.description = description;
-        rsvpList = new ArrayList<String>();
+        rsvpList = new HashMap<String, Boolean>();
     }
 
-    public void addToRSVP(String email){
-        rsvpList.add(email);
+    public Event(){
+
+    }
+    public String getUniqueID() {
+        return uniqueID;
     }
 
-    public void removeOfRSVP(String email){
-        rsvpList.remove(email);
+    public void setUniqueID(String uniqueID) {
+        this.uniqueID = uniqueID;
+    }
+
+    public void addToRSVP(String user){
+        rsvpList.put(user, true);
+    }
+
+    public void removeOfRSVP(String user){
+        rsvpList.remove(user);
     }
 
     public String getEventName() {
@@ -73,4 +107,6 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

@@ -4,34 +4,38 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="OCCUPATO"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/hookem_hand"
+        android:label="Occupato"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        <activity android:name=".MainActivity" />
-
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".event_details" />
-
+        <activity
+            android:name=".StudentOptions"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".event_details"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".OrganizationOptions"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
-        <activity android:name=".org_event_details"></activity>
-
+        <activity android:name=".org_event_details" />
+        <activity
+            android:name=".Register"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_register_login_view"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

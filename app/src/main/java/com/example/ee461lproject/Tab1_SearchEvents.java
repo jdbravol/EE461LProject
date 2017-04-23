@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Aaron on 4/17/17.
+ * Created by juanbravo on 4/17/17.
  */
 
 public class Tab1_SearchEvents extends Fragment {

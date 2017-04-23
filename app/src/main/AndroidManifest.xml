@@ -34,11 +34,6 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             />
         <activity android:name=".org_event_details" />
-        <activity
-            android:name=".Register"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_register_login_view"
-            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,7 +80,16 @@ public class Database{
     *
      */
     public static ArrayList<Event> allFutureEvents(){
-        return null;
+        Date currentDate = new Date();
+        ArrayList<Event> futureEvents = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.getDate().compareTo(currentDate)>= 0){
+                futureEvents.add(e);
+            }
+        }
+        return futureEvents;
     }
 
     /*
@@ -87,7 +97,16 @@ public class Database{
     *
      */
     public static ArrayList<Event> allPastEvents(){
-        return null;
+        Date currentDate = new Date();
+        ArrayList<Event> pastEvents = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.getDate().compareTo(currentDate)< 0){
+                pastEvents.add(e);
+            }
+        }
+        return pastEvents;
     }
 
     /*
@@ -95,7 +114,16 @@ public class Database{
     *
      */
     public static ArrayList<Event> allFutureEventsByOrg(String org){
-        return null;
+        Date currentDate = new Date();
+        ArrayList<Event> futureEvents = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
+                futureEvents.add(e);
+            }
+        }
+        return futureEvents;
     }
 
     /*
@@ -103,7 +131,16 @@ public class Database{
     *
      */
     public static ArrayList<Event> allPastEventsByOrg(String org){
-        return null;
+        Date currentDate = new Date();
+        ArrayList<Event> pastEvents = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.getDate().compareTo(currentDate)< 0 && org.equals(e.getOrganizer())){
+                pastEvents.add(e);
+            }
+        }
+        return pastEvents;
     }
 
     /*
@@ -111,7 +148,15 @@ public class Database{
     *
      */
     public static ArrayList<Event> allEventsByOrg(String org){
-        return null;
+        ArrayList<Event> eventsOrg = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(org.equals(e.getOrganizer())){
+                eventsOrg.add(e);
+            }
+        }
+        return eventsOrg;
     }
 
     /*
@@ -119,7 +164,16 @@ public class Database{
     *
      */
     public static ArrayList<Event> allRSVPEvents(String user){
-        return null;
+        ArrayList<Event> rsvpEvents = new ArrayList<Event>();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.isInRSVPList(user)){
+                rsvpEvents.add(e);
+            }
+        }
+
+        return rsvpEvents;
     }
 
     /*
@@ -127,7 +181,17 @@ public class Database{
     *
      */
     public static ArrayList<Event> allPastRSVPEvents(String user){
-        return null;
+        ArrayList<Event> pastRSVPEvents = new ArrayList<Event>();
+        Date currentDate = new Date();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.isInRSVPList(user) && e.getDate().compareTo(currentDate)<0){
+                pastRSVPEvents.add(e);
+            }
+        }
+
+        return pastRSVPEvents;
     }
 
     /*
@@ -135,7 +199,17 @@ public class Database{
     *
      */
     public static ArrayList<Event> allFutureRSVPEvents(String user){
-        return null;
+        ArrayList<Event> futureRSVPEvents = new ArrayList<Event>();
+        Date currentDate = new Date();
+
+        for(String s : events.keySet()){
+            Event e = events.get(s);
+            if(e.isInRSVPList(user) && e.getDate().compareTo(currentDate)>=0){
+                futureRSVPEvents.add(e);
+            }
+        }
+
+        return futureRSVPEvents;
     }
 }
 

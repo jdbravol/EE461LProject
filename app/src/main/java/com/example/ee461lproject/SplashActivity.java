@@ -24,13 +24,10 @@ public class SplashActivity extends Activity{
         setContentView(R.layout.activity_splash);
         super.onCreate(icicle);
 
+        //IMPORTANT: registers a listener to update the events :)
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference("Events");
-
         eventsRef.addChildEventListener(new EventListener());
-
-        Event event = new Event("TestEvent", "TestOrg", new Date(), "Test Location", "Test descript");
-        Database.makeEvent(event);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

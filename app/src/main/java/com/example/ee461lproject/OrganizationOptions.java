@@ -89,10 +89,10 @@ public class OrganizationOptions extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Tab1_CreateEvent tab1 = new Tab1_CreateEvent();
+                    Org_Tab1_CreateEvent tab1 = new Org_Tab1_CreateEvent();
                     return tab1;
                 case 1:
-                    Tab2_CreatedFeed tab2 = new Tab2_CreatedFeed();
+                    Org_Tab2_CreatedFeed tab2 = new Org_Tab2_CreatedFeed();
                     return tab2;
                 default:
                     return null;

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by Aaron on 4/17/17.
  */
 
-public class Tab2_CreatedFeed extends Fragment {
+public class Org_Tab2_CreatedFeed extends Fragment {
 
     @Nullable
     @Override

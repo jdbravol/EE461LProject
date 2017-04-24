@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ee461lproject.Tab2_CreatedFeed">
+    tools:context="com.example.ee461lproject.Org_Tab2_CreatedFeed">
 
 </LinearLayout>

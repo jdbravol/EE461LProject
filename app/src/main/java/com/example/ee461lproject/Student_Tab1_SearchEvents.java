@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by juanbravo on 4/17/17.
  */
 
-public class Tab1_SearchEvents extends Fragment {
+public class Student_Tab1_SearchEvents extends Fragment {
 
     @Nullable
     @Override

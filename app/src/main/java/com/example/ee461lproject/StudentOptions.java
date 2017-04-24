@@ -1,8 +1,6 @@
 package com.example.ee461lproject;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class StudentOptions extends AppCompatActivity {
 
@@ -92,13 +89,13 @@ public class StudentOptions extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Tab1_SearchEvents tab1 = new Tab1_SearchEvents();
+                    Student_Tab1_SearchEvents tab1 = new Student_Tab1_SearchEvents();
                     return tab1;
                 case 1:
-                    Tab2_MainEvents tab2 = new Tab2_MainEvents();
+                    Student_Tab2_MainEvents tab2 = new Student_Tab2_MainEvents();
                     return tab2;
                 case 2:
-                    Tab3_SubscribedEvents tab3 = new Tab3_SubscribedEvents();
+                    Student_Tab3_SubscribedEvents tab3 = new Student_Tab3_SubscribedEvents();
                     return tab3;
                 default:
                     return null;

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by juanbravo on 4/18/17.
  */
 
-public class Tab3_SubscribedEvents extends Fragment {
+public class Student_Tab3_SubscribedEvents extends Fragment {
 
     @Nullable
     @Override

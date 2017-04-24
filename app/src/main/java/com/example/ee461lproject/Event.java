@@ -127,5 +127,19 @@ public class Event {
         this.category = category;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        Event other = (Event) obj;
+        if(uniqueID!= other.uniqueID){ return false; }
+        if(!category.equals(other.getCategory())){ return false;}
+        if(!location.equals(other.getLocation())){ return false;}
+        if(!description.equals(other.getDescription())){ return false;}
+        if(!organizer.equals(other.getOrganizer())){ return false;}
+        if(!rsvpList.equals(other.getRSVPList())){ return false;}
+        if(!eventName.equals(other.getEventName())){ return false;}
+        if(freeFood!=other.hasFreeFood()) { return false;}
+        if(!date.equals(other.getDate())) { return false;}
 
+        return true;
+    }
 }

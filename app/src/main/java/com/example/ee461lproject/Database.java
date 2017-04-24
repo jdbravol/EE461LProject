@@ -2,15 +2,13 @@ package com.example.ee461lproject;
 
 import android.util.Log;
 
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class Database{
@@ -75,68 +73,121 @@ public class Database{
     }
 
     /*
-    * Returns an ArrayList of all future events in the DB
+    * Returns an ArrayList of all future events from the input ArrayLisy
     *
      */
-    public static ArrayList<Event> allFutureEvents(){
-        return null;
+    public static ArrayList<Event> futureEvents(ArrayList<Event> origEvents){
+        Date currentDate = new Date();
+        ArrayList<Event> futureEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)>= 0){
+                futureEvents.add(e);
+            }
+        }
+        return futureEvents;
     }
 
     /*
-    * Returns an ArrayList of all past events in the DB
+    * Returns an ArrayList of all past events in the input ArrayList
     *
      */
-    public static ArrayList<Event> allPastEvents(){
-        return null;
+    public static ArrayList<Event> pastEvents(ArrayList<Event> origEvents){
+        Date currentDate = new Date();
+        ArrayList<Event> pastEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)< 0){
+                pastEvents.add(e);
+            }
+        }
+        return pastEvents;
     }
 
     /*
-    * Returns an ArrayList of all future events by a specific organizer
+    * Returns an ArrayList of all events from a specific organizer from the input AL
     *
      */
-    public static ArrayList<Event> allFutureEventsByOrg(String org){
-        return null;
-    }
+    public static ArrayList<Event> eventsByOrg(ArrayList<Event> origEvents, String org){
+        Date currentDate = new Date();
+        ArrayList<Event> eventsByOrg = new ArrayList<Event>();
 
-    /*
-    * Returns an ArrayList of all past events by a specific organizer
-    *
-     */
-    public static ArrayList<Event> allPastEventsByOrg(String org){
-        return null;
-    }
-
-    /*
-    * Returns an ArrayList of all event by a specific organizer
-    *
-     */
-    public static ArrayList<Event> allEventsByOrg(String org){
-        return null;
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
+                eventsByOrg.add(e);
+            }
+        }
+        return eventsByOrg;
     }
 
     /*
     * Returns an ArrayList of all events a specific User is RSVPd to
     *
      */
-    public static ArrayList<Event> allRSVPEvents(String user){
-        return null;
+    public static ArrayList<Event> RSVPEvents(ArrayList<Event> origEvents, String user){
+        ArrayList<Event> rsvpEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.isInRSVPList(user)){
+                rsvpEvents.add(e);
+            }
+        }
+
+        return rsvpEvents;
     }
 
     /*
-    * Returns an ArrayList of all past events a specific User is RSVPd to
-    *
+    * Returns an ArrayList of all events that match a Date
      */
-    public static ArrayList<Event> allPastRSVPEvents(String user){
-        return null;
+    public static ArrayList<Event> dayEvents(ArrayList<Event> origEvents, Date date){
+
+        ArrayList<Event> dayEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            Date eventDate = e.getDate();
+            if(eventDate.getDay()==date.getDay() &&
+                    eventDate.getMonth()==date.getMonth() &&
+                    eventDate.getYear() == date.getYear()){
+                dayEvents.add(e);
+            }
+        }
+
+        return dayEvents;
     }
 
     /*
-    * Returns an ArrayList of all future events a specific User is RSVPd to
-    *
+    * Returns an ArrayList for events that match a category
      */
-    public static ArrayList<Event> allFutureRSVPEvents(String user){
-        return null;
+    public static ArrayList<Event> categoryEvents(ArrayList<Event> origEvents, String category){
+
+        ArrayList<Event> catEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getCategory().equals(category)){
+                catEvents.add(e);
+            }
+        }
+
+        return catEvents;
     }
+
+    /*
+    * Returns an ArrayList for events that have free food
+     */
+
+    public static ArrayList<Event> freeFoodEvents(ArrayList<Event> origEvents){
+
+        ArrayList<Event> freeFoodEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.hasFreeFood()){
+                freeFoodEvents.add(e);
+            }
+        }
+
+        return freeFoodEvents;
+    }
+
 }
 
 

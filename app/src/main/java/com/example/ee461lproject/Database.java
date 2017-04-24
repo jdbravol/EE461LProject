@@ -1,53 +1,193 @@
 package com.example.ee461lproject;
 
+import android.util.Log;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
-/**
- * Created by ezuec on 4/22/2017.
- */
-public class Database {
 
+public class Database{
+
+    public static HashMap<String, Event> events = new HashMap<String,Event>();
+
+    /*
+    * Takes input from firebase listener
+    * Takes the new or updated event and adds it to the HashMap
+     */
+    public static void downloadEvent(Event event){
+        Log.d("TEST", "Downloaded event" + event.getEventName());
+        events.put(event.getUniqueID(), event);
+    }
+
+    /*
+    * when an org deletes an event
+     */
+    public static void deleteEvent(Event event){
+        events.remove(event.getUniqueID());
+    }
+
+    /*
+    * Updates the server side version of an Event
+    * Meant for when organizers change the info of an event
+     */
     public static void updateEvent(Event event){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference eventsRef = database.getReference("Events");
 
+        //using our unique key, update the value of the db event
+        DatabaseReference eventRef = eventsRef.child(event.getUniqueID());
+        eventRef.setValue(event);
     }
 
-    public static void addEvent(Event event){
+    /*
+    * Makes a new event in the Firebase DB
+    * Used by organizers making new events to be displayed
+     */
+    public static void makeEvent(Event event){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference eventsRef = database.getReference("Events");
 
+        //push a new reference and set the value to the new event
+        DatabaseReference newEventRef = eventsRef.push();
+        event.setUniqueID(newEventRef.getKey());
+        newEventRef.setValue(event);
     }
 
-    public static ArrayList<Event> allFutureEvents(){
-        return null;
+    /*
+    * Returns an ArrayList of all events in the DB
+    *
+     */
+    public static ArrayList<Event> allEvents(){
+        ArrayList<Event> eventList = new ArrayList<Event>();
 
+        for(String s : events.keySet()){
+            eventList.add(events.get(s));
+        }
+
+        return eventList;
     }
 
-    public static ArrayList<Event> allPastEvents(){
-        return null;
+    /*
+    * Returns an ArrayList of all future events from the input ArrayLisy
+    *
+     */
+    public static ArrayList<Event> futureEvents(ArrayList<Event> origEvents){
+        Date currentDate = new Date();
+        ArrayList<Event> futureEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)>= 0){
+                futureEvents.add(e);
+            }
+        }
+        return futureEvents;
     }
 
-    public static ArrayList<Event> allFutureEventsByOrg(String org){
-        return null;
+    /*
+    * Returns an ArrayList of all past events in the input ArrayList
+    *
+     */
+    public static ArrayList<Event> pastEvents(ArrayList<Event> origEvents){
+        Date currentDate = new Date();
+        ArrayList<Event> pastEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)< 0){
+                pastEvents.add(e);
+            }
+        }
+        return pastEvents;
     }
 
-    public static ArrayList<Event> allPastEventsByOrg(String org){
-        return null;
+    /*
+    * Returns an ArrayList of all events from a specific organizer from the input AL
+    *
+     */
+    public static ArrayList<Event> eventsByOrg(ArrayList<Event> origEvents, String org){
+        Date currentDate = new Date();
+        ArrayList<Event> eventsByOrg = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
+                eventsByOrg.add(e);
+            }
+        }
+        return eventsByOrg;
     }
 
-    public static ArrayList<Event> allEventsByOrg(String org){
-        return null;
+    /*
+    * Returns an ArrayList of all events a specific User is RSVPd to
+    *
+     */
+    public static ArrayList<Event> RSVPEvents(ArrayList<Event> origEvents, String user){
+        ArrayList<Event> rsvpEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.isInRSVPList(user)){
+                rsvpEvents.add(e);
+            }
+        }
+
+        return rsvpEvents;
     }
 
-    public static ArrayList<Event> allRSVPEvents(String user){
-        return null;
+    /*
+    * Returns an ArrayList of all events that match a Date
+     */
+    public static ArrayList<Event> dayEvents(ArrayList<Event> origEvents, Date date){
+
+        ArrayList<Event> dayEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            Date eventDate = e.getDate();
+            if(eventDate.getDay()==date.getDay() &&
+                    eventDate.getMonth()==date.getMonth() &&
+                    eventDate.getYear() == date.getYear()){
+                dayEvents.add(e);
+            }
+        }
+
+        return dayEvents;
     }
 
-    public static ArrayList<Event> allPastRSVPEvents(String user){
-        return null;
+    /*
+    * Returns an ArrayList for events that match a category
+     */
+    public static ArrayList<Event> categoryEvents(ArrayList<Event> origEvents, String category){
+
+        ArrayList<Event> catEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.getCategory().equals(category)){
+                catEvents.add(e);
+            }
+        }
+
+        return catEvents;
     }
 
-    public static ArrayList<Event> allFutureRSVPEvents(String user){
-        return null;
+    /*
+    * Returns an ArrayList for events that have free food
+     */
+
+    public static ArrayList<Event> freeFoodEvents(ArrayList<Event> origEvents){
+
+        ArrayList<Event> freeFoodEvents = new ArrayList<Event>();
+
+        for(Event e : origEvents){
+            if(e.hasFreeFood()){
+                freeFoodEvents.add(e);
+            }
+        }
+
+        return freeFoodEvents;
     }
+
 }
 
 

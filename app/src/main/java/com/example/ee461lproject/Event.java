@@ -17,6 +17,9 @@ public class Event {
     private String location;
     private String description;
     private HashMap<String, Boolean> rsvpList;
+    private boolean freeFood;
+    private String category;
+
 
     public ArrayList<String> getRSVPList(){
         ArrayList<String> rsvp = new ArrayList<String>();
@@ -26,7 +29,6 @@ public class Event {
                 rsvp.add(s);
             }
         }
-
         return rsvp;
     }
 
@@ -40,18 +42,27 @@ public class Event {
         }
     }
 
-    public Event(String eventName, String organizer, Date date, String location, String description) {
+    public boolean hasFreeFood() {
+        return freeFood;
+    }
+
+    public void setFreeFood(boolean freefood) {
+        this.freeFood = freefood;
+    }
+
+    public Event(String eventName, String organizer, Date date, String location, String description, boolean freeFood, String category) {
         this.eventName = eventName;
         this.organizer = organizer;
         this.date = date;
         this.location = location;
         this.description = description;
         rsvpList = new HashMap<String, Boolean>();
+        this.freeFood = freeFood;
+        this.category = category;
     }
 
-    public Event(){
+    public Event(){}
 
-    }
     public String getUniqueID() {
         return uniqueID;
     }
@@ -106,6 +117,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 

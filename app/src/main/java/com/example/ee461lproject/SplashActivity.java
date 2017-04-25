@@ -27,7 +27,7 @@ public class SplashActivity extends Activity{
         //IMPORTANT: registers a listener to update the events :)
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference("Events");
-        eventsRef.addChildEventListener(new EventListener());
+        // eventsRef.addChildEventListener(new EventListener()); // TODO: Add EventListener
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

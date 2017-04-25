@@ -1,5 +1,6 @@
 package com.example.ee461lproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -37,8 +38,9 @@ public class Login extends AppCompatActivity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //2.1.1 redirect to
-
+                //2.1.1 redirect to Register page
+                Intent registrationIntent = new Intent(Login.this, Register.class);
+                Login.this.startActivity(registrationIntent);
             }
         });
 

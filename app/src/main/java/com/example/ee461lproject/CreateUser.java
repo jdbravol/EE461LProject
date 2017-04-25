@@ -123,6 +123,7 @@ public class CreateUser extends AppCompatActivity {
 
     // ------------------------------------- PRIVATE METHODS ------------------------------------- //
 
+
     private void goBackToLogin() {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
@@ -130,14 +131,15 @@ public class CreateUser extends AppCompatActivity {
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
-        if (!validateForm()) {  // validateForm() is defined farther down in the code
+        if (!AuthenticationTools.validateForm()) {
             return;
         }
 
         // [START create_user_with_email]
 
         /* The createUserWithEmailAndPassword method tries to create a new user account
-         * with the given email address and password.
+         * with the given email address and password. It signs the user out if creation is successful
+         * as Firebase authenticates by default.
          *
          * The method returns a Task object, which represents an asynchronous operation. We add an Activity-scoped
          * listener that is called when the Task completes.
@@ -151,7 +153,12 @@ public class CreateUser extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     final FirebaseUser user = mAuth.getCurrentUser();
                     Log.d(TAG, "createUserWithEmail:success");
-                    sendEmailVerification(user);    // TODO: Speed up Toast message
+
+                    Toast.makeText(CreateUser.this,
+                            "Sending verification email to " + user.getEmail(),
+                            Toast.LENGTH_SHORT).show();
+
+                    sendEmailVerification(user);    // TODO: Place in separate thread
                     mAuth.signOut();    // TODO: Determine optimal place to sign out
                     String accountType = accountSpinner.getSelectedItem().toString();
                     addUserToDatabase(user, accountType);  // TODO: Determine whether this is the best place to insert this call
@@ -170,7 +177,6 @@ public class CreateUser extends AppCompatActivity {
 
         });
         // [END create_user_with_email]
-
     }
 
     // Send verification email
@@ -185,11 +191,7 @@ public class CreateUser extends AppCompatActivity {
         user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateUser.this,
-                            "Verification email sent to " + user.getEmail(),
-                            Toast.LENGTH_SHORT).show();
-                } else {
+                if (!task.isSuccessful()) {
                     Log.e(TAG, "sendEmailVerification", task.getException());
                     Toast.makeText(CreateUser.this,
                             "Failed to send verification email.",
@@ -198,14 +200,6 @@ public class CreateUser extends AppCompatActivity {
             }
         });
         // [END send_email_verification]
-    }
-
-    private boolean validateForm() {
-        boolean valid = true;
-
-        // TODO: Write code for field validation
-
-        return valid;
     }
 
     private void addUserToDatabase(FirebaseUser user, String accountType) {

@@ -1,10 +1,20 @@
 package com.example.ee461lproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by juanbravo on 4/22/17.
@@ -12,11 +22,12 @@ import android.widget.EditText;
 
 public class Login extends AppCompatActivity {
 
-    private EditText userName;
+    private EditText email;
     private EditText password;
     private Button newUserButton;
     private Button forgotPasswordButton;
     private Button loginButton;
+    private  FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -34,7 +45,7 @@ public class Login extends AppCompatActivity {
         /* Returns an instance of the FirebaseAuth class corresponding to the default
          * FirebaseApp instance.
          */
-        mAuth = FirebaseAuth.getInstance();
+         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             // This method gets invoked in the UI thread on changes in the authentication state.
@@ -58,8 +69,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //2.1.1 redirect to Register page
-                Intent registrationIntent = new Intent(Login.this, Register.class);
-                Login.this.startActivity(registrationIntent);
+                loadCreateUserPage();
             }
         });
 
@@ -67,7 +77,7 @@ public class Login extends AppCompatActivity {
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                loadForgotPasswordPage();
             }
         });
 

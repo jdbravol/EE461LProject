@@ -5,7 +5,6 @@ import android.util.Log;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,21 +13,39 @@ import java.util.HashMap;
 public class Database{
 
     public static HashMap<String, Event> events = new HashMap<String,Event>();
+    public static Object eventsWriteLock = new Object();
+    public static Object usersWriteLock = new Object();
+    public static HashMap<String, String> users = new HashMap<String, String>();
 
     /*
-    * Takes input from firebase listener
-    * Takes the new or updated event and adds it to the HashMap
+    * Takes input from firebase event listener
+    * Takes the new or updated event and adds it to the event HashMap
      */
     public static void downloadEvent(Event event){
         Log.d("TEST", "Downloaded event" + event.getEventName());
-        events.put(event.getUniqueID(), event);
+        synchronized (eventsWriteLock) {
+            events.put(event.getUniqueID(), event);
+        }
+
     }
 
     /*
-    * when an org deletes an event
+    * takes input from the firebase user listener
+    * takes the new user and adds it to the user hashmap
+     */
+    public static void downloadUser(String id, String userType){
+        Log.d("TESTUSER", "Downloaded user" + id);
+        synchronized (usersWriteLock){
+            users.put(id, userType);
+        }
+    }
+    /*
+    * when an org deletes an event, we remove it from the hashmap
      */
     public static void deleteEvent(Event event){
-        events.remove(event.getUniqueID());
+        synchronized (eventsWriteLock) {
+            events.remove(event.getUniqueID());
+        }
     }
 
     /*
@@ -36,6 +53,7 @@ public class Database{
     * Meant for when organizers change the info of an event
      */
     public static void updateEvent(Event event){
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference("Events");
 
@@ -58,18 +76,43 @@ public class Database{
         newEventRef.setValue(event);
     }
 
+    public static void makeUser(String id, String userType){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("Users");
+
+        DatabaseReference newUserRef = userRef.child(id);
+        newUserRef.setValue(userType);
+    }
+
+
+
+    /*
+    * returns the userType for a given user
+    *
+     */
+    public static String getUserType(String id){
+        synchronized (usersWriteLock){
+            String userType = users.get(id);
+            return userType;
+        }
+    }
+
     /*
     * Returns an ArrayList of all events in the DB
     *
      */
     public static ArrayList<Event> allEvents(){
-        ArrayList<Event> eventList = new ArrayList<Event>();
 
-        for(String s : events.keySet()){
-            eventList.add(events.get(s));
+        synchronized (eventsWriteLock) {
+            ArrayList<Event> eventList = new ArrayList<Event>();
+
+            for(String s : events.keySet()){
+                eventList.add(events.get(s));
+            }
+
+            return eventList;
         }
 
-        return eventList;
     }
 
     /*
@@ -77,15 +120,19 @@ public class Database{
     *
      */
     public static ArrayList<Event> futureEvents(ArrayList<Event> origEvents){
-        Date currentDate = new Date();
-        ArrayList<Event> futureEvents = new ArrayList<Event>();
 
-        for(Event e : origEvents){
-            if(e.getDate().compareTo(currentDate)>= 0){
-                futureEvents.add(e);
+        synchronized (eventsWriteLock) {
+            Date currentDate = new Date();
+            ArrayList<Event> futureEvents = new ArrayList<Event>();
+
+            for(Event e : origEvents){
+                if(e.getDate().compareTo(currentDate)>= 0){
+                    futureEvents.add(e);
+                }
             }
+            return futureEvents;
         }
-        return futureEvents;
+
     }
 
     /*
@@ -93,15 +140,18 @@ public class Database{
     *
      */
     public static ArrayList<Event> pastEvents(ArrayList<Event> origEvents){
-        Date currentDate = new Date();
-        ArrayList<Event> pastEvents = new ArrayList<Event>();
+        synchronized (eventsWriteLock) {
+            Date currentDate = new Date();
+            ArrayList<Event> pastEvents = new ArrayList<Event>();
 
-        for(Event e : origEvents){
-            if(e.getDate().compareTo(currentDate)< 0){
-                pastEvents.add(e);
+            for(Event e : origEvents){
+                if(e.getDate().compareTo(currentDate)< 0){
+                    pastEvents.add(e);
+                }
             }
+            return pastEvents;
         }
-        return pastEvents;
+
     }
 
     /*
@@ -109,15 +159,17 @@ public class Database{
     *
      */
     public static ArrayList<Event> eventsByOrg(ArrayList<Event> origEvents, String org){
-        Date currentDate = new Date();
-        ArrayList<Event> eventsByOrg = new ArrayList<Event>();
+        synchronized (eventsWriteLock) {
+            Date currentDate = new Date();
+            ArrayList<Event> eventsByOrg = new ArrayList<Event>();
 
-        for(Event e : origEvents){
-            if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
-                eventsByOrg.add(e);
+            for(Event e : origEvents){
+                if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
+                    eventsByOrg.add(e);
+                }
             }
+            return eventsByOrg;
         }
-        return eventsByOrg;
     }
 
     /*
@@ -125,50 +177,54 @@ public class Database{
     *
      */
     public static ArrayList<Event> RSVPEvents(ArrayList<Event> origEvents, String user){
-        ArrayList<Event> rsvpEvents = new ArrayList<Event>();
+        synchronized (eventsWriteLock) {
+            ArrayList<Event> rsvpEvents = new ArrayList<Event>();
 
-        for(Event e : origEvents){
-            if(e.isInRSVPList(user)){
-                rsvpEvents.add(e);
+            for(Event e : origEvents){
+                if(e.isInRSVPList(user)){
+                    rsvpEvents.add(e);
+                }
             }
-        }
 
-        return rsvpEvents;
+            return rsvpEvents;
+        }
     }
 
     /*
     * Returns an ArrayList of all events that match a Date
      */
     public static ArrayList<Event> dayEvents(ArrayList<Event> origEvents, Date date){
+        synchronized (eventsWriteLock) {
+            ArrayList<Event> dayEvents = new ArrayList<Event>();
 
-        ArrayList<Event> dayEvents = new ArrayList<Event>();
-
-        for(Event e : origEvents){
-            Date eventDate = e.getDate();
-            if(eventDate.getDay()==date.getDay() &&
-                    eventDate.getMonth()==date.getMonth() &&
-                    eventDate.getYear() == date.getYear()){
-                dayEvents.add(e);
+            for(Event e : origEvents){
+                Date eventDate = e.getDate();
+                if(eventDate.getDay()==date.getDay() &&
+                        eventDate.getMonth()==date.getMonth() &&
+                        eventDate.getYear() == date.getYear()){
+                    dayEvents.add(e);
+                }
             }
-        }
 
-        return dayEvents;
+            return dayEvents;
+        }
     }
 
     /*
     * Returns an ArrayList for events that match a category
      */
     public static ArrayList<Event> categoryEvents(ArrayList<Event> origEvents, String category){
+        synchronized (eventsWriteLock) {
+            ArrayList<Event> catEvents = new ArrayList<Event>();
 
-        ArrayList<Event> catEvents = new ArrayList<Event>();
-
-        for(Event e : origEvents){
-            if(e.getCategory().equals(category)){
-                catEvents.add(e);
+            for(Event e : origEvents){
+                if(e.getCategory().equals(category)){
+                    catEvents.add(e);
+                }
             }
-        }
 
-        return catEvents;
+            return catEvents;
+        }
     }
 
     /*
@@ -176,16 +232,17 @@ public class Database{
      */
 
     public static ArrayList<Event> freeFoodEvents(ArrayList<Event> origEvents){
+        synchronized (eventsWriteLock) {
+            ArrayList<Event> freeFoodEvents = new ArrayList<Event>();
 
-        ArrayList<Event> freeFoodEvents = new ArrayList<Event>();
-
-        for(Event e : origEvents){
-            if(e.hasFreeFood()){
-                freeFoodEvents.add(e);
+            for(Event e : origEvents){
+                if(e.hasFreeFood()){
+                    freeFoodEvents.add(e);
+                }
             }
-        }
 
-        return freeFoodEvents;
+            return freeFoodEvents;
+        }
     }
 
 }

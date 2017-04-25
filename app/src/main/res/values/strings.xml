@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EE461LProject</string>
     <string name="main_feed">Main feed</string>
@@ -5,8 +6,12 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_tabexample">tabexample</string>
-
     <string name="title_activity_register_login_view">RegisterLoginView</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string-array name="account_types">
+        <item>Student</item>
+        <item>Organization</item>
+    </string-array>
 </resources>

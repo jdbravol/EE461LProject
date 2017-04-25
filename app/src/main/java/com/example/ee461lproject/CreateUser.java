@@ -194,9 +194,7 @@ public class CreateUser extends AppCompatActivity {
     }
 
     private void addUserToDatabase(FirebaseUser user, String accountType) {
-
-        // TODO: Write code to add user to the database
-
+        Database.makeUser(user.getUid(), accountType);
     }
 
 }

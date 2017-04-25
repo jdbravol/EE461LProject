@@ -1,5 +1,6 @@
 package com.example.ee461lproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 
 public class Login extends AppCompatActivity {
 
-    private EditText userName;
+    private EditText email;
     private EditText password;
     private Button newUserButton;
     private Button forgotPasswordButton;
@@ -25,7 +26,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //1.0 link EditText and Buttons in layouts
-        userName = (EditText) findViewById(R.id.emailLine);
+        email = (EditText) findViewById(R.id.emailLine);
         password = (EditText) findViewById(R.id.passwordLine);
         newUserButton = (Button) findViewById(R.id.newUserButton);
         forgotPasswordButton = (Button) findViewById(R.id.forgotPassButton);
@@ -37,8 +38,7 @@ public class Login extends AppCompatActivity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //2.1.1 redirect to
-
+                loadCreateUserPage();
             }
         });
 
@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                loadForgotPasswordPage();
             }
         });
 
@@ -57,6 +57,15 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void loadCreateUserPage() {
+        Intent intent = new Intent(this, CreateUser.class);
+        startActivity(intent);
+    }
+
+    private void loadForgotPasswordPage() {
+        Intent intent = new Intent(this, ForgotPassword.class);
+        startActivity(intent);
     }
 }

@@ -46,7 +46,6 @@ public class Database{
         synchronized (eventsWriteLock) {
             events.remove(event.getUniqueID());
         }
-
     }
 
     /*

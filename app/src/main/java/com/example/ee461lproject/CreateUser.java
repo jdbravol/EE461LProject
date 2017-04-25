@@ -1,5 +1,6 @@
 package com.example.ee461lproject;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class CreateUser extends AppCompatActivity {
     private EditText emailLine;
     private Button createButton;
     private Spinner accountSpinner;
+    private Button backButton;
+    // TODO: Add a field for a display name
 
     // The entry point of the Firebase Authentication SDK
     private FirebaseAuth mAuth;
@@ -36,11 +39,12 @@ public class CreateUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
 
-        // Get the references for the text fields, create account button, and spinner
+        // Get the references for the text fields, buttons, and spinner
         passwordLine = (EditText) findViewById(R.id.passwordLine);
         emailLine = (EditText) findViewById(R.id.emailLine);
         createButton = (Button) findViewById(R.id.createButton);
         accountSpinner = (Spinner) findViewById(R.id.accountSpinner);
+        backButton = (Button) findViewById(R.id.backToLogin);
 
         // Create an ArrayAdapter using the array defined in the strings.xml file
             // Using code from Android API guides:
@@ -83,6 +87,13 @@ public class CreateUser extends AppCompatActivity {
                 emailLine.setText("");
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBackToLogin();
+            }
+        });
     }
 
     /* Called after onCreate(Bundle) — or after onRestart() when the activity had been stopped,
@@ -112,6 +123,10 @@ public class CreateUser extends AppCompatActivity {
 
     // ------------------------------------- PRIVATE METHODS ------------------------------------- //
 
+    private void goBackToLogin() {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);

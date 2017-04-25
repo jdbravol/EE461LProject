@@ -1,5 +1,8 @@
 package com.example.ee461lproject;
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.google.firebase.database.DatabaseReference;
@@ -13,6 +16,9 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static junit.framework.Assert.assertNotNull;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -23,6 +29,23 @@ public class DatabaseTesting {
 
     @Before
     public void clearBefore(){
+
+        Instrumentation mInstrumentation = getInstrumentation();
+        // We register our interest in the activity
+        Instrumentation.ActivityMonitor monitor = mInstrumentation.addMonitor(SplashActivity.class.getName(), null, false);
+        // We launch it
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setClassName(mInstrumentation.getTargetContext(), SplashActivity.class.getName());
+        mInstrumentation.startActivitySync(intent);
+
+        Activity currentActivity = getInstrumentation().waitForMonitor(monitor);
+        assertNotNull(currentActivity);
+
+        // We register our interest in the next activity from the sequence in this use case
+        mInstrumentation.removeMonitor(monitor);
+        monitor = mInstrumentation.addMonitor(Login.class.getName(), null, false);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
@@ -60,15 +83,21 @@ public class DatabaseTesting {
 
         while(Database.allEvents().size()<1){}
 
+        assert(testEvent.equals(Database.allEvents().get(0)));
+
         testEvent.setEventName("TestEventChange");
         Database.updateEvent(testEvent);
 
         //wait to giv time for update to occur
-        try {
-            wait(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (this){
+            try {
+                wait(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+
         assert(testEvent.equals(Database.allEvents().get(0)));
     }
 
@@ -80,7 +109,7 @@ public class DatabaseTesting {
         Event testEvent = new Event("TestEvent", "TestOrg", new Date(), "TestLocation", "TestDescription", true, "TestCategory");
         Database.makeEvent(testEvent);
 
-        while(Database.allEvents().size()<5){}
+        while(Database.allEvents().size()<1){}
         Database.deleteEvent(testEvent);
         while(Database.allEvents().size()>0){}
         assert(testEvent.equals(Database.allEvents().size() == 0));
@@ -248,11 +277,11 @@ public class DatabaseTesting {
 
     /*
     * test making a lot of events
-    */
+    * */
     @Test
     public void aLotOfEvents(){
         ArrayList<Event> events = new ArrayList<Event>();
-        for(int i= 0; i<1000; i++){
+        for(int i= 0; i<10; i++){
             Event e = new Event("TestEvent" + i, "TestOrg", new Date(), "TestLocation", "TestDescription", true, "TestCategory");
             events.add(e);
         }
@@ -261,9 +290,9 @@ public class DatabaseTesting {
             Database.makeEvent(e);
         }
 
-        while(Database.allEvents().size()<1000){}
+        while(Database.allEvents().size()<10){}
 
-        assert(Database.allEvents().size() == 1000);
+        assert(Database.allEvents().size() == 10);
     }
 
 }

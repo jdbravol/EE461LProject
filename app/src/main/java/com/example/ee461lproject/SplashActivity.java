@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
-import java.util.EventListener;
 
 public class SplashActivity extends Activity{
     private final int SPLASH_DISPLAY_LENGTH = 5000;

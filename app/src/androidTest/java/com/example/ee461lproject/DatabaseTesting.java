@@ -50,6 +50,9 @@ public class DatabaseTesting {
         DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
 
+        DatabaseReference usersRef = database.getReference("Users");
+        usersRef.removeValue();
+
         while(Database.allEvents().size()>0){}
 
     }
@@ -59,6 +62,9 @@ public class DatabaseTesting {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
+
+        DatabaseReference usersRef = database.getReference("Users");
+        usersRef.removeValue();
 
         while(Database.allEvents().size()>0){}
     }
@@ -293,6 +299,22 @@ public class DatabaseTesting {
         while(Database.allEvents().size()<10){}
 
         assert(Database.allEvents().size() == 10);
+    }
+
+    /*
+ * test making of a user and tracking of their userType
+ * */
+    @Test
+    public void testUser(){
+        Database.makeUser("TESTUID1", "Student");
+        Database.makeUser("TESTUID2", "Organization");
+        Database.makeUser("TESTUID3", "Administrator");
+
+        while(Database.numberUsers()<3){}
+
+        assert(Database.getUserType("TESTUID1").equals("Student"));
+        assert(Database.getUserType("TESTUID2").equals("Organization"));
+        assert(Database.getUserType("TESTUID3").equals("Administrator"));
     }
 
 }

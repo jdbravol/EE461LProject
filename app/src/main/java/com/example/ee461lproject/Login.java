@@ -28,6 +28,8 @@ public class Login extends AppCompatActivity {
     private Button forgotPasswordButton;
     private Button loginButton;
     private  FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
+    String TAG = "TAG";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class Login extends AppCompatActivity {
          */
          mAuth = FirebaseAuth.getInstance();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        mAuthListener  = new FirebaseAuth.AuthStateListener() {
             // This method gets invoked in the UI thread on changes in the authentication state.
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

@@ -39,6 +39,16 @@ public class Database{
             users.put(id, userType);
         }
     }
+
+    /*
+   * gets the number of users in the hashmap
+    */
+    public static int numberUsers(){
+        Log.d("TESTUSER", "Number of users");
+        synchronized (usersWriteLock){
+            return users.size();
+        }
+    }
     /*
     * when an org deletes an event, we remove it from the hashmap
      */

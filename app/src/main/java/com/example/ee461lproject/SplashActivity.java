@@ -25,20 +25,20 @@ public class SplashActivity extends Activity{
         setContentView(R.layout.activity_splash);
         super.onCreate(icicle);
 
-        //IMPORTANT: registers a listener to update the events
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventsRef = database.getReference("Events");
-        eventsRef.addChildEventListener(new EventListener());
-
-        //IMPORTANT: registers a listener to update the users -- (if slow, will be moved)
-        DatabaseReference usersRef = database.getReference("Users");
-        usersRef.addChildEventListener(new UserListener());
-
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+                //IMPORTANT: registers a listener to update the events
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference eventsRef = database.getReference("Events");
+                eventsRef.addChildEventListener(new EventListener());
+
+                //IMPORTANT: registers a listener to update the users -- (if slow, will be moved)
+                DatabaseReference usersRef = database.getReference("Users");
+                usersRef.addChildEventListener(new UserListener());
+
                 /* Create an Intent that will start the Menu-Activity. */
                 Intent mainIntent = new Intent(SplashActivity.this, Login.class);
                 SplashActivity.this.startActivity(mainIntent);

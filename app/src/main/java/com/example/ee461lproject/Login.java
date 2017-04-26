@@ -22,20 +22,23 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
+    //Variable Declaration
     private EditText email;
     private EditText password;
     private Button newUserButton;
     private Button forgotPasswordButton;
     private Button loginButton;
-    private  FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private static final String TAG = "Login.this";
 
-    @Override
+
     protected void onCreate(final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Link EditText and Buttons in layouts
+        //1.0 Link EditText and Buttons in layouts
         email = (EditText) findViewById(R.id.emailLine);
         password = (EditText) findViewById(R.id.passwordLine);
         newUserButton = (Button) findViewById(R.id.newUserButton);
@@ -63,20 +66,22 @@ public class Login extends AppCompatActivity {
             }
         };
 
-        // Add onclick functionality to each button
+        //2.0 Add onclick functionality to each button
 
+        //2.1 set listener for newUser Button
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //2.1.1 redirect to Register page
+                //2.1.1 redirect to CreateUser page
                 loadCreateUserPage();
             }
         });
 
-        //2.2 forgotPasswordButton
+        //2.2 set listener for forgotPassword Button
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //2.2.1 redirect to ForgotPassword page
                 loadForgotPasswordPage();
             }
         });
@@ -85,6 +90,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //2.3.1 validate Log In
                 signIn(email.getText().toString(), password.getText().toString());
             }
         });

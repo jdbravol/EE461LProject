@@ -176,9 +176,17 @@ public class Login extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-
+        String type = Database.getUserType(user.getUid());
         // TODO: Retrieve user information and update UI accordingly
+    }
 
+    private void loadUserOptions(FirebaseUser user){
+        Intent userOptionsIntent = new Intent(this, StudentOptions.class);
+        startActivity(userOptionsIntent);
+    }
+    private void loadOrganizationOptions(FirebaseUser user){
+        Intent userOptionsIntent = new Intent(this, OrganizationOptions.class);
+        startActivity(userOptionsIntent);
     }
 
 }

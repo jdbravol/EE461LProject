@@ -7,6 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -19,6 +21,8 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void makeEventTest(){
+        Date date = new Date();
+        Event newEvent = new Event("name", "organizer", date, "location", "this is the description", true, "category");
 
     }
 }

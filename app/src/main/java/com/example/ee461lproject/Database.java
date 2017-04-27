@@ -1,6 +1,7 @@
 package com.example.ee461lproject;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -103,6 +104,7 @@ public class Database{
     public static String getUserType(String id){
         synchronized (usersWriteLock){
             String userType = users.get(id);
+            Log.d("getUserType",userType);
             return userType;
         }
     }

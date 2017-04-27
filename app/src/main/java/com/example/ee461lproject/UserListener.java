@@ -12,7 +12,7 @@ public class UserListener implements ChildEventListener {
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName){
-            Log.d(TAG,"onUserChildAdded:"+dataSnapshot.getKey());
+            Log.d(TAG,"onUserChildAdded: "+dataSnapshot.getKey());
 
             //there's a new user so we download it to the app
             String userType =  dataSnapshot.getValue(String.class);

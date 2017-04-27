@@ -152,15 +152,16 @@ public class CreateUser extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {    // Parameter = completed Task
                 if (task.isSuccessful()) {
                     final FirebaseUser user = mAuth.getCurrentUser();
+                    String accountType = accountSpinner.getSelectedItem().toString();
+                    addUserToDatabase(user, accountType);
                     Log.d(TAG, "createUserWithEmail:success");
 
                     Toast.makeText(CreateUser.this,
-                            "Sending verification email to " + user.getEmail(),
+                            "Sending verification email to " + user.getUid(),
                             Toast.LENGTH_SHORT).show();
 
                     sendEmailVerification(user);    // TODO: Place in separate thread
                     mAuth.signOut();    // TODO: Determine optimal place to sign out
-                    String accountType = accountSpinner.getSelectedItem().toString();
                     addUserToDatabase(user, accountType);  // TODO: Determine whether this is the best place to insert this call
                 } else {
                     /* If the default sign-in fails, we display a message.

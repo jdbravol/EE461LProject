@@ -90,7 +90,6 @@ public class Database{
     public static void makeUser(String id, String userType){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("Users");
-
         DatabaseReference newUserRef = userRef.child(id);
         newUserRef.setValue(userType);
     }

@@ -177,6 +177,13 @@ public class Login extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         String type = Database.getUserType(user.getUid());
+        switch (type){
+            case "Student":
+                loadUserOptions(user);
+                break;
+            case "Organization":
+                loadOrganizationOptions(user);
+        }
         // TODO: Retrieve user information and update UI accordingly
     }
 

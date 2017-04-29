@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class CreateUser extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class CreateUser extends AppCompatActivity {
     private Button createButton;
     private Spinner accountSpinner;
     private Button backButton;
-    // TODO: Add a field for a display name
+    private EditText nameLine;
 
     // The entry point of the Firebase Authentication SDK
     private FirebaseAuth mAuth;
@@ -45,6 +46,7 @@ public class CreateUser extends AppCompatActivity {
         createButton = (Button) findViewById(R.id.createButton);
         accountSpinner = (Spinner) findViewById(R.id.accountSpinner);
         backButton = (Button) findViewById(R.id.backToLogin);
+        nameLine = (EditText) findViewById(R.id.nameLine);
 
         // Create an ArrayAdapter using the array defined in the strings.xml file
             // Using code from Android API guides:
@@ -82,9 +84,21 @@ public class CreateUser extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccount(emailLine.getText().toString(), passwordLine.getText().toString());
-                passwordLine.setText("");
-                emailLine.setText("");
+                String email = emailLine.getText().toString();
+                String password = passwordLine.getText().toString();
+                String displayName = nameLine.getText().toString();
+
+                if(!email.equals("") && !password.equals("") && !displayName.equals("")){
+                    createAccount(emailLine.getText().toString(), passwordLine.getText().toString(), nameLine.getText().toString());
+                    passwordLine.setText("");
+                    emailLine.setText("");
+                    nameLine.setText("");
+                }
+                else{
+                    Toast.makeText(CreateUser.this,
+                            "Fill out completely the form.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -129,7 +143,7 @@ public class CreateUser extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void createAccount(String email, String password) {
+    private void createAccount(String email, String password, final String displayName) {
         Log.d(TAG, "createAccount:" + email);
         if (!AuthenticationTools.validateForm()) {
             return;
@@ -144,6 +158,8 @@ public class CreateUser extends AppCompatActivity {
          * The method returns a Task object, which represents an asynchronous operation. We add an Activity-scoped
          * listener that is called when the Task completes.
          */
+
+
         Task<AuthResult> creationTask =  mAuth.createUserWithEmailAndPassword(email, password);
         creationTask.addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
@@ -152,6 +168,10 @@ public class CreateUser extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {    // Parameter = completed Task
                 if (task.isSuccessful()) {
                     final FirebaseUser user = mAuth.getCurrentUser();
+                    UserProfileChangeRequest.Builder requestBuilder = new UserProfileChangeRequest.Builder();
+                    requestBuilder.setDisplayName(displayName);
+                    UserProfileChangeRequest request = requestBuilder.build();
+                    user.updateProfile(request);
                     String accountType = accountSpinner.getSelectedItem().toString();
                     addUserToDatabase(user, accountType);
                     Log.d(TAG, "createUserWithEmail:success");
@@ -162,7 +182,6 @@ public class CreateUser extends AppCompatActivity {
 
                     sendEmailVerification(user);    // TODO: Place in separate thread
                     mAuth.signOut();    // TODO: Determine optimal place to sign out
-                    addUserToDatabase(user, accountType);  // TODO: Determine whether this is the best place to insert this call
                 } else {
                     /* If the default sign-in fails, we display a message.
                      *

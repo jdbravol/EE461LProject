@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-
 public class Database{
 
     public static HashMap<String, Event> events = new HashMap<String,Event>();
@@ -32,7 +31,7 @@ public class Database{
 
     /*
     * takes input from the firebase user listener
-    * takes the new user and adds it to the user hashmap
+    * takes the new user and adds it to the user HashMap
      */
     public static void downloadUser(String id, String userType){
         Log.d("TESTUSER", "Downloaded user" + id);
@@ -51,7 +50,7 @@ public class Database{
         }
     }
     /*
-    * when an org deletes an event, we remove it from the hashmap
+    * when an org deletes an event, we remove it from the HashMap
      */
     public static void deleteEvent(Event event){
         synchronized (eventsWriteLock) {
@@ -127,7 +126,7 @@ public class Database{
     }
 
     /*
-    * Returns an ArrayList of all future events from the input ArrayLisy
+    * Returns an ArrayList of all future events from the input ArrayList
     *
      */
     public static ArrayList<Event> futureEvents(ArrayList<Event> origEvents){

@@ -32,7 +32,7 @@ public class EventListener implements ChildEventListener {
     public void onChildRemoved(DataSnapshot dataSnapshot){
             Log.d(TAG,"onChildRemoved:"+dataSnapshot.getKey());
 
-            //en event was removed, so eliminate it
+            //an event was removed, so eliminate it
             Event event =  dataSnapshot.getValue(Event.class);
             Database.deleteEvent(event);
 

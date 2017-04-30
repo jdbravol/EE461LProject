@@ -1,17 +1,24 @@
 package com.example.ee461lproject;
 
+import android.text.TextUtils;
+import java.util.ArrayList;
+
 /**
  * Created by Aaron on 4/25/17.
  */
 
 public class AuthenticationTools {
 
-    public static boolean validateForm() {
-        boolean valid = true;
+    public static boolean validateForm(ArrayList<String> fieldsToCheck) {
 
-        // TODO: Write code for field validation
+        // TODO: Finish code for field validation
+        for (String field : fieldsToCheck) {
+            if (TextUtils.isEmpty(field)) {
+                return false;
+            }
+        }
 
-        return valid;
+        return true;
     }
 
 }

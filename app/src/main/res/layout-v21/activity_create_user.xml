@@ -20,7 +20,7 @@
         android:layout_marginTop="84dp"
         android:backgroundTint="@android:color/black"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7"

@@ -177,7 +177,7 @@ public class CreateUser extends AppCompatActivity {
                     Log.d(TAG, "createUserWithEmail:success");
 
                     Toast.makeText(CreateUser.this,
-                            "Sending verification email to " + user.getUid(),
+                            "Sending verification email to " + user.getEmail(),
                             Toast.LENGTH_SHORT).show();
 
                     sendEmailVerification(user);    // TODO: Place in separate thread

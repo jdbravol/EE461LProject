@@ -17,8 +17,8 @@
 
         <activity
             android:name=".StudentOptions"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
             android:name=".event_details"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

@@ -184,7 +184,6 @@ public class Login extends AppCompatActivity {
             case "Organization":
                 loadOrganizationOptions(user);
         }
-        // TODO: Retrieve user information and update UI accordingly
     }
 
     private void loadUserOptions(FirebaseUser user){

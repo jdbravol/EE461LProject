@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         /* Returns an instance of the FirebaseAuth class corresponding to the default
          * FirebaseApp instance.
          */
-         mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mAuthListener  = new FirebaseAuth.AuthStateListener() {
             // This method gets invoked in the UI thread on changes in the authentication state.

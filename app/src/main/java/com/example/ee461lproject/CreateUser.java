@@ -84,19 +84,19 @@ public class CreateUser extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailLine.getText().toString();
-                String password = passwordLine.getText().toString();
-                String displayName = nameLine.getText().toString();
+                String email = emailLine.getText().toString().trim();
+                String password = passwordLine.getText().toString().trim();
+                String displayName = nameLine.getText().toString().trim();
 
                 if(!email.equals("") && !password.equals("") && !displayName.equals("")){
-                    createAccount(emailLine.getText().toString(), passwordLine.getText().toString(), nameLine.getText().toString());
+                    createAccount(email, password, displayName);
                     passwordLine.setText("");
                     emailLine.setText("");
                     nameLine.setText("");
                 }
                 else{
                     Toast.makeText(CreateUser.this,
-                            "Fill out completely the form.",
+                            "Fill out the form completely.",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -145,9 +145,14 @@ public class CreateUser extends AppCompatActivity {
 
     private void createAccount(String email, String password, final String displayName) {
         Log.d(TAG, "createAccount:" + email);
+
+        /*
+        // TODO: Validate fields
+
         if (!AuthenticationTools.validateForm()) {
             return;
         }
+        */
 
         // [START create_user_with_email]
 
@@ -158,8 +163,6 @@ public class CreateUser extends AppCompatActivity {
          * The method returns a Task object, which represents an asynchronous operation. We add an Activity-scoped
          * listener that is called when the Task completes.
          */
-
-
         Task<AuthResult> creationTask =  mAuth.createUserWithEmailAndPassword(email, password);
         creationTask.addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 

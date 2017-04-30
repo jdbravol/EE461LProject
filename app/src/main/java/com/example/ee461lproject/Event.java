@@ -46,11 +46,13 @@ public class Event {
         return freeFood;
     }
 
-    public void setFreeFood(boolean freefood) {
-        this.freeFood = freefood;
+    public void setFreeFood(boolean freeFood) {
+        this.freeFood = freeFood;
     }
 
-    public Event(String eventName, String organizer, Date date, String location, String description, boolean freeFood, String category) {
+    public Event(String eventName, String organizer, Date date, String location, String description,
+                 boolean freeFood, String category)
+    {
         this.eventName = eventName;
         this.organizer = organizer;
         this.date = date;

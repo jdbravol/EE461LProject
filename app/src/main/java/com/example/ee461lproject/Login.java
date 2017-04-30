@@ -16,6 +16,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by juanbravo on 4/22/17.
  */
@@ -130,7 +133,13 @@ public class Login extends AppCompatActivity {
 
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
-        if (!AuthenticationTools.validateForm()) {
+        ArrayList<String> fields = new ArrayList<String>(Arrays.asList(email, password));
+        if (!AuthenticationTools.validateForm(fields)) {
+
+            Toast.makeText(Login.this,
+                    "Fill out the form completely.",
+                    Toast.LENGTH_SHORT).show();
+
             return;
         }
 
@@ -149,10 +158,12 @@ public class Login extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     if (user.isEmailVerified()) {
                         Log.d(TAG, "verificationCheck:success");
-                        // TODO: Remove after writing updateUI
+
+                        /*
                         Toast.makeText(Login.this,
                                 "Sign-in successful for: " + user.getEmail(),
                                 Toast.LENGTH_SHORT).show();
+                        */
 
                         updateUI(user);
                     }

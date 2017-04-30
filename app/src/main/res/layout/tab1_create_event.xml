@@ -54,8 +54,26 @@
                 android:id="@+id/org_EventDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:ems="10"
                 android:hint="Date"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="Time"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/org_EventTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Time"
                 android:inputType="textPersonName" />
 
             <TextView

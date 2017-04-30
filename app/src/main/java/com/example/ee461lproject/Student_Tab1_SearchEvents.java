@@ -35,7 +35,6 @@ public class Student_Tab1_SearchEvents extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear,
                                           int dayOfMonth) {
-
                         int s=monthOfYear+1;
                         String a = dayOfMonth+"/"+s+"/"+year;
                         editText.setText(""+a);

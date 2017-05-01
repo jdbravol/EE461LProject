@@ -24,6 +24,8 @@ import static junit.framework.Assert.assertNotNull;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
+// TODO: Change test suite so that existing Events and Users aren't destroyed
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTesting {
 
@@ -47,10 +49,10 @@ public class DatabaseTesting {
         monitor = mInstrumentation.addMonitor(Login.class.getName(), null, false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventsRef = database.getReference("TestEvents");
+        DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
 
-        DatabaseReference usersRef = database.getReference("TestUsers");
+        DatabaseReference usersRef = database.getReference("Users");
         usersRef.removeValue();
 
         while(Database.allEvents().size()>0){}
@@ -60,7 +62,7 @@ public class DatabaseTesting {
     @After
     public void clearAfter(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventsRef = database.getReference("TestEvents");
+        DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
 
         DatabaseReference usersRef = database.getReference("TestUsers");

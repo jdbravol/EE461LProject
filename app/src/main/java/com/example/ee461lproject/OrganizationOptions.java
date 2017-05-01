@@ -1,5 +1,6 @@
 package com.example.ee461lproject;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,8 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class OrganizationOptions extends AppCompatActivity {
 
@@ -28,11 +35,18 @@ public class OrganizationOptions extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private static final String TAG = "OrgOptions";
+    public static ArrayList<Event> underlyingOrgEvents = Database.allEvents();
+    public static Context context;
+    public static EventFeedAdapter eventFeedAdapter;
+    public FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_options);
+        OrganizationOptions.context = getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,6 +62,26 @@ public class OrganizationOptions extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        ArrayList<Event> orgEvents = Database.eventsByOrg(underlyingOrgEvents, user.getDisplayName());
+        eventFeedAdapter = new EventFeedAdapter(context, orgEvents);
+    }
+
+
+    public static void updateUnderlyingEvents(String orgName) {
+        Log.d(TAG, "entering updateUnderlyingEvents()");
+
+        ArrayList<Event> allEvents = Database.allEvents();
+        underlyingOrgEvents = Database.eventsByOrg(allEvents, orgName);
+        eventFeedAdapter.clear();
+        eventFeedAdapter.addAll(underlyingOrgEvents);
+        eventFeedAdapter.notifyDataSetChanged();
+
+        Log.d(TAG, "size of underlyingOrgEvents: " + underlyingOrgEvents.size());
+    }
+
+
+    public EventFeedAdapter getEventFeedAdapter() {
+        return eventFeedAdapter;
     }
 
     // TODO: Replace default options with logout
@@ -65,7 +99,6 @@ public class OrganizationOptions extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

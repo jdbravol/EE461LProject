@@ -8,27 +8,27 @@
 
     <TextView
         android:id="@+id/feed_EventName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:text="Event Name"
         android:textAlignment="textStart"
         android:textSize="24sp" />
 
     <LinearLayout
-        android:id="@+id/feedEventDateStuff"
-        android:layout_width="wrap_content"
+        android:id="@+id/feedEventDateParent"
+        android:layout_width="189dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/feed_EventDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.88"
             android:text="DD/MM/YYYY"
             android:textAlignment="textEnd"
             android:textSize="24sp" />
@@ -36,8 +36,7 @@
         <TextView
             android:id="@+id/feed_EventTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:layout_weight="0.88"
             android:text="HH:MM"

@@ -56,7 +56,7 @@ public class ForgotPassword extends AppCompatActivity {
                                     }
                                     else{
                                         Toast.makeText(ForgotPassword.this,
-                                                "Wrong email address.",
+                                                "Invalid email address.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

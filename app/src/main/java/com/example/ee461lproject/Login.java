@@ -203,6 +203,7 @@ public class Login extends AppCompatActivity {
     }
     private void loadOrganizationOptions(FirebaseUser user){
         Intent userOptionsIntent = new Intent(this, OrganizationOptions.class);
+        Database.writeToOrg = true;
         startActivity(userOptionsIntent);
     }
 

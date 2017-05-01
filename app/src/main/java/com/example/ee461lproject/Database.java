@@ -16,17 +16,17 @@ public class Database{
     public static Object eventsWriteLock = new Object();
     public static Object usersWriteLock = new Object();
     public static HashMap<String, String> users = new HashMap<String, String>();
+    public static boolean writeToOrg = false;
 
     /*
     * Takes input from firebase event listener
     * Takes the new or updated event and adds it to the event HashMap
      */
     public static void downloadEvent(Event event){
-        Log.d("TEST", "Downloaded event" + event.getEventName());
+        Log.d("TEST", "Downloaded event " + event.getEventName());
         synchronized (eventsWriteLock) {
             events.put(event.getUniqueID(), event);
         }
-
     }
 
     /*
@@ -34,7 +34,7 @@ public class Database{
     * takes the new user and adds it to the user HashMap
      */
     public static void downloadUser(String id, String userType){
-        Log.d("TESTUSER", "Downloaded user" + id);
+        Log.d("TESTUSER", "Downloaded user " + id);
         synchronized (usersWriteLock){
             users.put(id, userType);
         }
@@ -85,7 +85,6 @@ public class Database{
         event.setUniqueID(newEventRef.getKey());
 
         // TODO: We should delete this, although it's not necessary.
-        // No user will have the event's unique ID, so it's not particularly dangerous to leave in.
         event.getRsvpList().put(event.getUniqueID(), true);
 
         newEventRef.setValue(event);

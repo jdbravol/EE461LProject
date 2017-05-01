@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/hookem_hand"
-        android:label="Occupato"
+        android:icon="@drawable/logo"
+        android:label=" "
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".SplashActivity"

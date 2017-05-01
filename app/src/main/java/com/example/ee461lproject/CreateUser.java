@@ -185,6 +185,7 @@ public class CreateUser extends AppCompatActivity {
 
                     sendEmailVerification(user);    // TODO: Place in separate thread
                     mAuth.signOut();    // TODO: Determine optimal place to sign out
+                    loadLogin();
                 } else {
                     /* If the default sign-in fails, we display a message.
                      *
@@ -227,6 +228,11 @@ public class CreateUser extends AppCompatActivity {
 
     private void addUserToDatabase(FirebaseUser user, String accountType) {
         Database.makeUser(user.getUid(), accountType);
+    }
+
+    private void loadLogin(){
+        Intent loginIntent = new Intent(this, Login.class);
+        startActivity(loginIntent);
     }
 
 }

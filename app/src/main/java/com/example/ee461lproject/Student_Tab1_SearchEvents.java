@@ -20,14 +20,21 @@ import java.util.Date;
 
 public class Student_Tab1_SearchEvents extends Fragment {
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        //set view
         View rootView =  inflater.inflate(R.layout.tab1_search_events, container, false);
 
-        final EditText editText = (EditText) rootView.findViewById(R.id.dateField);
+        //Link objects in fragment
+        final EditText dateField = (EditText) rootView.findViewById(R.id.dateField);
+        final EditText orgName = (EditText) rootView.findViewById(R.id.orgNameField);
 
-        editText.setOnClickListener(new View.OnClickListener() {
+        //add functionality to each object
+        dateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -35,16 +42,16 @@ public class Student_Tab1_SearchEvents extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear,
                                           int dayOfMonth) {
-                        int s=monthOfYear+1;
+                        int s = monthOfYear+1;
                         String a = dayOfMonth+"/"+s+"/"+year;
-                        editText.setText(""+a);
+                        dateField.setText(""+a);
                     }
                 };
 
                 Calendar mcurrentDate=Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
-                int mMonth=mcurrentDate.get(Calendar.MONTH);
-                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(getActivity(), dpd, mYear, mMonth, mDay);
                 dialog.show();

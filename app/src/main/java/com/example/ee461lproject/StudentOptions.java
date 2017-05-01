@@ -1,6 +1,7 @@
 package com.example.ee461lproject;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +20,6 @@ import android.widget.EditText;
 import java.util.Date;
 
 public class StudentOptions extends AppCompatActivity {
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -33,7 +34,7 @@ public class StudentOptions extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    private final static String TAG = "StudentOptionsActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,7 +56,6 @@ public class StudentOptions extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
-
     }
 
     // TODO: Replace default options with logout
@@ -71,11 +71,14 @@ public class StudentOptions extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
+        Log.d(TAG, "onOptionsItemSelected");
+        long id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Log.d(TAG, "Clicked action_settings");
+            Intent settingsIntent = new Intent(StudentOptions.this, Settings.class);
+            StudentOptions.this.startActivity(settingsIntent);
+            StudentOptions.this.finish();
         }
 
         return super.onOptionsItemSelected(item);

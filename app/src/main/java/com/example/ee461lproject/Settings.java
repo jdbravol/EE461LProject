@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+
 public class Settings extends AppCompatActivity {
 
 
@@ -29,8 +30,10 @@ public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
-
+        Log.d(TAG, "Entered settings");
+        setContentView(R.layout.activity_settings);
 
         Button changePwdButton = (Button) findViewById(R.id.changePasswordButton);
         Button changeNameButton = (Button) findViewById(R.id.changeNameButton);
@@ -47,7 +50,7 @@ public class Settings extends AppCompatActivity {
 
                 //change password
                 if (pwd1.equals(pwd2)) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser user = mAuth.getCurrentUser();
                     user.updatePassword(pwd1)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -76,7 +79,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 String newName = newNameField.getText().toString();
                 if (!newName.equals("")) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser user = mAuth.getCurrentUser();
                     UserProfileChangeRequest.Builder requestBuilder = new UserProfileChangeRequest.Builder();
                     requestBuilder.setDisplayName(newName);
                     UserProfileChangeRequest request = requestBuilder.build();
@@ -102,7 +105,7 @@ public class Settings extends AppCompatActivity {
                             count,
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser user = mAuth.getCurrentUser();
 
                     user.delete()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -31,6 +31,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
+        Log.d(TAG, "User logged in is: " + mAuth.getCurrentUser());
         super.onCreate(savedInstanceState);
         Log.d(TAG, "Entered settings");
         setContentView(R.layout.activity_settings);
@@ -84,6 +85,9 @@ public class Settings extends AppCompatActivity {
                     requestBuilder.setDisplayName(newName);
                     UserProfileChangeRequest request = requestBuilder.build();
                     user.updateProfile(request);
+                    Toast.makeText(Settings.this,
+                            "Updated Name succesfully." +  user.getDisplayName(),
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Settings.this,
                             "Please write a new display name.",
@@ -100,10 +104,12 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(Settings.this,
                             "Click this button 5 more times to delete account.",
                             Toast.LENGTH_SHORT).show();
+                    count++;
                 } else if (count > 0 && count < 6) {
                     Toast.makeText(Settings.this,
-                            count,
+                            Integer.toString(count),
                             Toast.LENGTH_SHORT).show();
+                    count++;
                 } else {
                     FirebaseUser user = mAuth.getCurrentUser();
 

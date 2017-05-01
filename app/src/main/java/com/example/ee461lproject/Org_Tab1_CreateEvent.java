@@ -183,7 +183,7 @@ public class Org_Tab1_CreateEvent extends Fragment {
         int hour = Integer.parseInt(hourMinute[0]);
         int minute = Integer.parseInt(hourMinute[1]);
 
-        Date date = new Date(year - 1900, month, day, hour, minute);
+        Date date = new Date(year, month, day, hour, minute);
         Log.d(TAG, "The date is: " + date.toString());
         return date;
     }

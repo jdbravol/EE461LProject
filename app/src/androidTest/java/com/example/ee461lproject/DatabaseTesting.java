@@ -47,10 +47,10 @@ public class DatabaseTesting {
         monitor = mInstrumentation.addMonitor(Login.class.getName(), null, false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventsRef = database.getReference("Events");
+        DatabaseReference eventsRef = database.getReference("TestEvents");
         eventsRef.removeValue();
 
-        DatabaseReference usersRef = database.getReference("Users");
+        DatabaseReference usersRef = database.getReference("TestUsers");
         usersRef.removeValue();
 
         while(Database.allEvents().size()>0){}
@@ -60,10 +60,10 @@ public class DatabaseTesting {
     @After
     public void clearAfter(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventsRef = database.getReference("Events");
+        DatabaseReference eventsRef = database.getReference("TestEvents");
         eventsRef.removeValue();
 
-        DatabaseReference usersRef = database.getReference("Users");
+        DatabaseReference usersRef = database.getReference("TestUsers");
         usersRef.removeValue();
 
         while(Database.allEvents().size()>0){}

@@ -20,35 +20,7 @@ public class Event {
     private boolean freeFood;
     private String category;
 
-
-    public ArrayList<String> getRSVPList(){
-        ArrayList<String> rsvp = new ArrayList<String>();
-
-        for(String s : rsvpList.keySet()){
-            if(rsvpList.get(s) == true){
-                rsvp.add(s);
-            }
-        }
-        return rsvp;
-    }
-
-    public boolean isInRSVPList(String user){
-        if(rsvpList.containsKey(user)){
-            return true;
-        }
-
-        else{
-            return false;
-        }
-    }
-
-    public boolean hasFreeFood() {
-        return freeFood;
-    }
-
-    public void setFreeFood(boolean freeFood) {
-        this.freeFood = freeFood;
-    }
+    public Event(){}
 
     public Event(String eventName, String organizer, Date date, String location, String description,
                  boolean freeFood, String category)
@@ -63,7 +35,43 @@ public class Event {
         this.category = category;
     }
 
-    public Event(){}
+    // TODO: Delete this method in favor of the one below it?
+    public ArrayList<String> getRSVPArrayList(){
+        ArrayList<String> rsvp = new ArrayList<String>();
+
+        for(String s : rsvpList.keySet()){
+            if(rsvpList.get(s) == true){
+                rsvp.add(s);
+            }
+        }
+        return rsvp;
+    }
+
+    public HashMap<String, Boolean> getRsvpList() {
+        return rsvpList;
+    }
+
+    public boolean isInRSVPList(String user){
+        if(rsvpList.containsKey(user)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    // We need this additional getter so that the freeFood boolean shows up in Firebase
+    public boolean isFreeFood() {
+        return freeFood;
+    }
+
+    public boolean hasFreeFood() {
+        return freeFood;
+    }
+
+    public void setFreeFood(boolean freeFood) {
+        this.freeFood = freeFood;
+    }
 
     public String getUniqueID() {
         return uniqueID;
@@ -125,6 +133,7 @@ public class Event {
         return category;
     }
 
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -137,11 +146,12 @@ public class Event {
         if(!location.equals(other.getLocation())){ return false;}
         if(!description.equals(other.getDescription())){ return false;}
         if(!organizer.equals(other.getOrganizer())){ return false;}
-        if(!rsvpList.equals(other.getRSVPList())){ return false;}
+        if(!rsvpList.equals(other.getRSVPArrayList())){ return false;}
         if(!eventName.equals(other.getEventName())){ return false;}
         if(freeFood!=other.hasFreeFood()) { return false;}
         if(!date.equals(other.getDate())) { return false;}
 
         return true;
     }
+
 }

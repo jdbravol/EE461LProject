@@ -24,6 +24,8 @@ import static junit.framework.Assert.assertNotNull;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
+// TODO: Change test suite so that existing Events and Users aren't destroyed
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTesting {
 
@@ -63,7 +65,7 @@ public class DatabaseTesting {
         DatabaseReference eventsRef = database.getReference("Events");
         eventsRef.removeValue();
 
-        DatabaseReference usersRef = database.getReference("Users");
+        DatabaseReference usersRef = database.getReference("TestUsers");
         usersRef.removeValue();
 
         while(Database.allEvents().size()>0){}

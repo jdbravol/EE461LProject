@@ -131,6 +131,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
+            android:focusable="false"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
             app:layout_constraintRight_toRightOf="@+id/categoryField" />
 

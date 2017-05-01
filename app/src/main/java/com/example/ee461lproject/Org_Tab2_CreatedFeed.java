@@ -16,6 +16,9 @@ public class Org_Tab2_CreatedFeed extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab2_created_feed, container, false);
+        View orgCreateFeedView = inflater.inflate(R.layout.tab2_created_feed, container, false);
+
+
+        return orgCreateFeedView;
     }
 }

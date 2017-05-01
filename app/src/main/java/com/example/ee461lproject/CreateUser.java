@@ -41,12 +41,12 @@ public class CreateUser extends AppCompatActivity {
         setContentView(R.layout.activity_create_user);
 
         // Get the references for the text fields, buttons, and spinner
-        passwordLine = (EditText) findViewById(R.id.passwordLine);
-        emailLine = (EditText) findViewById(R.id.emailLine);
+        passwordLine = (EditText) findViewById(R.id.createPasswordLine);
+        emailLine = (EditText) findViewById(R.id.createEmailLine);
         createButton = (Button) findViewById(R.id.createButton);
         accountSpinner = (Spinner) findViewById(R.id.accountSpinner);
         backButton = (Button) findViewById(R.id.backToLogin);
-        nameLine = (EditText) findViewById(R.id.nameLine);
+        nameLine = (EditText) findViewById(R.id.createNameLine);
 
         // Create an ArrayAdapter using the array defined in the strings.xml file
             // Using code from Android API guides:

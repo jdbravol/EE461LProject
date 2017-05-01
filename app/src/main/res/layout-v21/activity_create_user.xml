@@ -15,9 +15,8 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="25dp">
 
-
         <EditText
-            android:id="@+id/nameLine"
+            android:id="@+id/createNameLine"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="250dp"
             android:layout_height="48dp"
@@ -45,8 +44,8 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
-            app:layout_constraintTop_toBottomOf="@+id/newPasswordField"
+            app:layout_constraintLeft_toLeftOf="@+id/createEmailLine"
+            app:layout_constraintTop_toBottomOf="@+id/createEmailLine"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="94dp"
             tools:layout_conversion_absoluteX="16dp"
@@ -67,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/newPasswordField"
+            android:id="@+id/createPasswordLine"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="250dp"
             android:layout_height="48dp"
@@ -85,7 +84,7 @@
             tools:layout_conversion_absoluteY="181dp" />
 
         <EditText
-            android:id="@+id/newPasswordField"
+            android:id="@+id/createEmailLine"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_marginEnd="153dp"
@@ -137,8 +136,8 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
-            app:layout_constraintTop_toBottomOf="@+id/newPasswordField"
+            app:layout_constraintLeft_toLeftOf="@+id/createEmailLine"
+            app:layout_constraintTop_toBottomOf="@+id/createEmailLine"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="94dp"
             tools:layout_conversion_absoluteX="16dp"
@@ -169,13 +168,13 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
-            app:layout_constraintTop_toBottomOf="@+id/newPasswordField" />
+            app:layout_constraintLeft_toLeftOf="@+id/createPasswordLine"
+            app:layout_constraintTop_toBottomOf="@+id/createPasswordLine" />
 
         <Spinner
             android:id="@+id/accountSpinner"
-            android:layout_width="152dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="4dp"

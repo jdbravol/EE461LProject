@@ -38,11 +38,11 @@ public class RegisteredUserTest {
         }
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.emailLine), isDisplayed()));
+                allOf(withId(R.id.createEmailLine), isDisplayed()));
         appCompatEditText.perform(replaceText("jdbravol@utexas.edu"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.passwordLine), isDisplayed()));
+                allOf(withId(R.id.createPasswordLine), isDisplayed()));
         appCompatEditText2.perform(replaceText("9565628092"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(

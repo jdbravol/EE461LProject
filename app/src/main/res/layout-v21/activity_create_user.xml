@@ -15,6 +15,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="25dp">
 
+
         <EditText
             android:id="@+id/nameLine"
             style="@style/Widget.AppCompat.EditText"
@@ -44,8 +45,8 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/emailLine"
-            app:layout_constraintTop_toBottomOf="@+id/emailLine"
+            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
+            app:layout_constraintTop_toBottomOf="@+id/newPasswordField"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="94dp"
             tools:layout_conversion_absoluteX="16dp"
@@ -66,7 +67,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/passwordLine"
+            android:id="@+id/newPasswordField"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="250dp"
             android:layout_height="48dp"
@@ -84,7 +85,7 @@
             tools:layout_conversion_absoluteY="181dp" />
 
         <EditText
-            android:id="@+id/emailLine"
+            android:id="@+id/newPasswordField"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_marginEnd="153dp"
@@ -136,8 +137,8 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/emailLine"
-            app:layout_constraintTop_toBottomOf="@+id/emailLine"
+            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
+            app:layout_constraintTop_toBottomOf="@+id/newPasswordField"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="94dp"
             tools:layout_conversion_absoluteX="16dp"
@@ -168,8 +169,8 @@
             android:textColor="@color/burntOrange"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@+id/passwordLine"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLine" />
+            app:layout_constraintLeft_toLeftOf="@+id/newPasswordField"
+            app:layout_constraintTop_toBottomOf="@+id/newPasswordField" />
 
         <Spinner
             android:id="@+id/accountSpinner"

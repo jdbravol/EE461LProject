@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import org.parceler.Parcels;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +24,7 @@ import java.util.Collections;
 
 public class Student_Tab2_MainEvents extends Fragment {
 
-
+    private String TAG = "Student_Tab2";
 
     @Nullable
     @Override
@@ -38,8 +40,10 @@ public class Student_Tab2_MainEvents extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Event e = (Event) parent.getAdapter().getItem(position);
+                Log.d(TAG, "Event Name is: " + e.getEventName());
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
-                eventIntent.putExtra("EVENT", (Parcelable) e);
+                eventIntent.putExtra("EVENT", Parcels.wrap(e));
+                startActivity(eventIntent);
             }
         });
         return rootView;

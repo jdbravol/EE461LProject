@@ -14,6 +14,8 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 
 /**
@@ -35,7 +37,8 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Event e = (Event) parent.getAdapter().getItem(position);
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
-                eventIntent.putExtra("EVENT", (Parcelable) e);
+                eventIntent.putExtra("EVENT", Parcels.wrap(e));
+                startActivity(eventIntent);
                 // Toast.makeText(getContext(), "Testing scope.", Toast.LENGTH_LONG).show();
             }
         });

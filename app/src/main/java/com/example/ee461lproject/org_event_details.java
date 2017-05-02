@@ -30,6 +30,7 @@ public class org_event_details extends AppCompatActivity {
         TextView dateField = (TextView) findViewById(R.id.dateFieldOrg);
         TextView locationField = (TextView) findViewById(R.id.locationFieldOrg);
         TextView descriptionText = (TextView) findViewById(R.id.descriptionFieldOrg);
+        TextView categoryText = (TextView) findViewById(R.id.categoryFieldOrg);
         TextView rsvpField = (TextView) findViewById(R.id.rsvpFieldOrg);
         CheckBox freeFood = (CheckBox) findViewById(R.id.freeFoodOrg);
 
@@ -38,6 +39,7 @@ public class org_event_details extends AppCompatActivity {
         dateField.setText(event.getDateString());
         locationField.setText(event.getLocation());
         descriptionText.setText(event.getDescription());
+        categoryText.setText(event.getCategory());
         if (event.hasFreeFood()){
             freeFood.setChecked(true);
         }

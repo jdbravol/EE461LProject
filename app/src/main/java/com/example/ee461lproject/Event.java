@@ -1,6 +1,9 @@
 package com.example.ee461lproject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +13,7 @@ import java.util.HashMap;
  * Created by ezuec on 4/22/2017.
  */
 
-public class Event implements Comparable<Event> {
+public class Event implements Comparable<Event>, Parcelable {
 
     private String uniqueID;
     private String eventName;
@@ -21,6 +24,7 @@ public class Event implements Comparable<Event> {
     private HashMap<String, Boolean> rsvpList;
     private boolean freeFood;
     private String category;
+    private int mData;
 
     public Event(){}
 
@@ -164,5 +168,31 @@ public class Event implements Comparable<Event> {
         else{
             return -1;
         }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mData);
+    }
+
+    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Event(Parcel in) {
+        mData = in.readInt();
     }
 }

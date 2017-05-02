@@ -32,6 +32,9 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
         View rootView = inflater.inflate(R.layout.tab3_subscribed_events, container, false);
 
         final ListView subscribedListView = (ListView) rootView.findViewById(R.id.subscribedEventListView);
+        StudentOptions parent = (StudentOptions) getActivity();
+        subscribedListView.setAdapter(parent.getSubscribedFeedAdapter());
+
         subscribedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -39,6 +42,7 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
                 eventIntent.putExtra("EVENT", Parcels.wrap(e));
                 startActivity(eventIntent);
+                getActivity().finish();
                 // Toast.makeText(getContext(), "Testing scope.", Toast.LENGTH_LONG).show();
             }
         });

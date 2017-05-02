@@ -43,6 +43,7 @@ public class Student_Tab2_MainEvents extends Fragment {
                 Log.d(TAG, "Event Name is: " + e.getEventName());
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
                 eventIntent.putExtra("EVENT", Parcels.wrap(e));
+                getActivity().finish();
                 startActivity(eventIntent);
             }
         });

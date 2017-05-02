@@ -70,6 +70,11 @@ public class Database{
         //using our unique key, update the value of the db event
         DatabaseReference eventRef = eventsRef.child(event.getUniqueID());
         eventRef.setValue(event);
+
+        //updates offline value
+        synchronized (eventsWriteLock) {
+            events.put(event.getUniqueID(), event);
+        }
     }
 
     /*

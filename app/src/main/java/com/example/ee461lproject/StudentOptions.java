@@ -1,6 +1,7 @@
 package com.example.ee461lproject;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class StudentOptions extends AppCompatActivity {
@@ -31,13 +33,18 @@ public class StudentOptions extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+
     private StudentOptions.SectionsPagerAdapter mSectionsPagerAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     /**
      * The {@link ViewPager} that will host the section contents.
      */
+
+
     private ViewPager mViewPager;
     private final static String TAG = "StudentOptionsActivity";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,8 +64,6 @@ public class StudentOptions extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.ee461lproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -100,7 +101,9 @@ public class OrganizationOptions extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            Intent settingsIntent = new Intent(OrganizationOptions.this, Settings.class);
+            OrganizationOptions.this.startActivity(settingsIntent);
+            OrganizationOptions.this.finish();
         }
 
         return super.onOptionsItemSelected(item);

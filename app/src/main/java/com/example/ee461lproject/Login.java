@@ -110,7 +110,6 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mAuth.signOut();
         if (mAuthListener != null) {
             // Unregisters a listener to authentication changes.
             mAuth.removeAuthStateListener(mAuthListener);

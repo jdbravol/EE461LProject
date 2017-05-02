@@ -26,6 +26,7 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
 
     public EventFeedAdapter subscribedEventFeed;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

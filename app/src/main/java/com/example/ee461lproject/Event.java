@@ -198,6 +198,7 @@ public class Event implements Comparable<Event>{
         year = String.valueOf(adjustedYear);
         month = months[monthIndex] + ".";
     }
+
     public String getDateString(){
         String[] dateFields = this.getDate().toString().split(" ");
         String time = "";

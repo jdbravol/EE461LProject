@@ -37,14 +37,13 @@ public class StudentOptions extends AppCompatActivity {
 
     private StudentOptions.SectionsPagerAdapter mSectionsPagerAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-
-
     private ViewPager mViewPager;
     private final static String TAG = "StudentOptionsActivity";
-    public static ArrayList<Event> allEventList =Database.allEvents();
+    public static ArrayList<Event> allEventList = Database.allEvents();
     public static Context context;
     public static EventFeedAdapter allEventFeedAdapter;
     public static EventFeedAdapter subscribedEventFeedAdapter;
@@ -99,6 +98,7 @@ public class StudentOptions extends AppCompatActivity {
         subscribedEventFeedAdapter.clear();
         subscribedEventFeedAdapter.addAll(Database.RSVPEvents(allEventList, user));
         subscribedEventFeedAdapter.notifyDataSetChanged();
+
         Log.d(TAG, "size of underlyingOrgEvents: " + allEventList.size());
     }
 

@@ -3,11 +3,35 @@ package com.example.ee461lproject;
 import android.text.TextUtils;
 import java.util.ArrayList;
 
+import static android.R.attr.password;
+
 /**
  * Created by Aaron on 4/25/17.
  */
 
 public class AuthenticationTools {
+
+    public static boolean textFieldsEmpty(ArrayList<String> textFields) {
+        for (String field : textFields) {
+            if (TextUtils.isEmpty(field)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+    private boolean textFieldsEmpty() {
+        for (String field : textFields) {
+            if (TextUtils.isEmpty(field)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+     */
 
     public static boolean validateEmailPassword(String email, String password) {
 

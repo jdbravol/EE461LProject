@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class Settings extends AppCompatActivity {
 
@@ -50,6 +53,14 @@ public class Settings extends AppCompatActivity {
                 String pwd1 = newPwdField.getText().toString();
                 String pwd2 = newPwdField2.getText().toString();
 
+                ArrayList<String> passwords = new ArrayList<String>(Arrays.asList(new String[]{pwd1, pwd2}));
+                if (AuthenticationTools.textFieldsEmpty(passwords)) {
+                    Toast.makeText(Settings.this,
+                            "Enter both password fields.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //change password
                 if (pwd1.equals(pwd2)) {
                     FirebaseUser user = mAuth.getCurrentUser();
@@ -59,7 +70,7 @@ public class Settings extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(Settings.this,
-                                                "Password updated succesfully/",
+                                                "Password updated succesfully!",
                                                 Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "User password updated.");
                                     }

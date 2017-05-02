@@ -35,7 +35,6 @@ public class Student_Tab2_MainEvents extends Fragment {
         StudentOptions parent = (StudentOptions) getActivity();
         mainEventsFeed.setAdapter(parent.getAllEventFeedAdapter());
 
-
         mainEventsFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

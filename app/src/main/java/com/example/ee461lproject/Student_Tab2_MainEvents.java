@@ -16,6 +16,13 @@ public class Student_Tab2_MainEvents extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab2_main_events, container, false);
+        View rootView = inflater.inflate(R.layout.tab2_main_events, container, false);
+
+        //linking
+
+
+
+
+        return rootView;
     }
 }

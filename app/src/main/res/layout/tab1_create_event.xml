@@ -1,186 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.example.ee461lproject.Org_Tab1_CreateEvent">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="411dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:isScrollContainer="true"
-        android:windowSoftInputMode="adjustResize"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/title_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Event Name"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/title_event"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Event Name"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventName"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Event Name"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/org_EventName"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Event Name"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/title_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Date"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/title_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="10dp"
-                android:text="Date"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventDate"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:focusable="false"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Date"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/org_EventDate"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:focusable="false"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Date"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Time"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="10dp"
-                android:text="Time"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventTime"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:focusable="false"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Time"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/org_EventTime"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:focusable="false"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Time"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/title_loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Location"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/title_loc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="10dp"
-                android:text="Location"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventLocation"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Location"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/org_EventLocation"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Location"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/title_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Description"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/title_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="10dp"
-                android:text="Description"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventDescription"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:scrollIndicators="right"
+            android:scrollbars="vertical" />
 
-            <EditText
-                android:id="@+id/org_EventDescription"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Description"
-                android:inputType="textMultiLine"
-                android:scrollIndicators="right"
-                android:scrollbars="vertical" />
+        <TextView
+            android:id="@+id/title_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Category"
+            android:textColor="@color/burntOrange"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/title_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="10dp"
-                android:text="Category"
-                android:textColor="@color/burntOrange"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/org_EventCategory"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Category"
+            android:inputType="textPersonName"
+            android:paddingBottom="20dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
 
-            <EditText
-                android:id="@+id/org_EventCategory"
-                android:layout_width="328dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
-                android:hint="Category"
-                android:inputType="textPersonName"
-                android:paddingBottom="20dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="0dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <CheckBox
+            android:id="@+id/free_food_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="0dp"
+            android:text="Free food"
+            android:textSize="20sp" />
 
-            <CheckBox
-                android:id="@+id/free_food_checkbox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingTop="0dp"
-                android:text="Free food"
-                android:textSize="20sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
+        <Button
+            android:id="@+id/org_CreateEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Create"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
-            <Button
-                android:id="@+id/org_CreateEvent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Create"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

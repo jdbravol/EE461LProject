@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class event_details extends AppCompatActivity {
-    private static Event e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -13,7 +12,4 @@ public class event_details extends AppCompatActivity {
         // TODO: Set vertical scrolling for description
     }
 
-    public void setE(Event e){
-        this.e = e;
-    }
 }

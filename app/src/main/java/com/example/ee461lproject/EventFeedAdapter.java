@@ -42,7 +42,6 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater eventInflater = LayoutInflater.from(getContext());
-        // TODO: Implement View Holder pattern
         View eventItemView = eventInflater.inflate(R.layout.feed_event_item, parent, false);
         Event e = getItem(position);
 

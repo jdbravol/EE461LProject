@@ -143,7 +143,7 @@ public class CreateUser extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void createAccount(String email, String password, final String displayName) {
+    private void createAccount(final String email, String password, final String displayName) {
         Log.d(TAG, "createAccount:" + email);
 
         /*

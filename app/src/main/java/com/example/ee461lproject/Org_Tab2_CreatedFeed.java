@@ -36,7 +36,7 @@ public class Org_Tab2_CreatedFeed extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Event e = (Event) parent.getAdapter().getItem(position);
-                Intent eventIntent = new Intent(getActivity(), event_details.class);
+                Intent eventIntent = new Intent(getActivity(), org_event_details.class);
                 eventIntent.putExtra("EVENT", Parcels.wrap(e));
                 startActivity(eventIntent);
             }

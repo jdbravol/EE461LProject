@@ -1,7 +1,9 @@
 package com.example.ee461lproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -35,7 +37,9 @@ public class Student_Tab2_MainEvents extends Fragment {
         mainEventsFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: open description of event
+                Event e = (Event) parent.getAdapter().getItem(position);
+                Intent eventIntent = new Intent(getActivity(), event_details.class);
+                eventIntent.putExtra("EVENT", (Parcelable) e);
             }
         });
         return rootView;

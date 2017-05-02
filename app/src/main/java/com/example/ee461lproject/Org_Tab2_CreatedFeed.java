@@ -1,6 +1,7 @@
 package com.example.ee461lproject;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -33,8 +34,9 @@ public class Org_Tab2_CreatedFeed extends Fragment {
         orgEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: Switch to org_event_details Activity
-                // Toast.makeText(getContext(), "Testing scope.", Toast.LENGTH_LONG).show();
+                Event e = (Event) parent.getAdapter().getItem(position);
+                Intent eventIntent = new Intent(getActivity(), event_details.class);
+                eventIntent.putExtra("EVENT", (Parcelable) e);
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.ee461lproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,11 +33,9 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
         subscribedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Event e = (Event) subscribedListView.getItemAtPosition(position);
-                event_details.setEvent(e);
-
+                Event e = (Event) parent.getAdapter().getItem(position);
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
-
+                eventIntent.putExtra("EVENT", (Parcelable) e);
                 // Toast.makeText(getContext(), "Testing scope.", Toast.LENGTH_LONG).show();
             }
         });

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by juanbravo on 4/18/17.
@@ -28,6 +29,8 @@ public class Student_Tab2_MainEvents extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2_main_events, container, false);
 
+        //set the event adapter to contain all events in database sorted by date
+        Collections.sort(allEventList);
         eventFeedAdapter = new EventFeedAdapter(context, allEventList);
         //linking
         ListView mainEventsFeed = (ListView) rootView.findViewById(R.id.student_eventListView);
@@ -48,7 +51,4 @@ public class Student_Tab2_MainEvents extends Fragment {
         Log.d(TAG, "size of underlyingOrgEvents: " + allEventList.size());
     }
 
-    public EventFeedAdapter getAllEventFeedAdapter() {
-        return eventFeedAdapter;
-    }
 }

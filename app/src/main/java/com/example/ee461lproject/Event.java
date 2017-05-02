@@ -1,5 +1,7 @@
 package com.example.ee461lproject;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,7 +10,7 @@ import java.util.HashMap;
  * Created by ezuec on 4/22/2017.
  */
 
-public class Event {
+public class Event implements Comparable<Event> {
 
     private String uniqueID;
     private String eventName;
@@ -154,4 +156,13 @@ public class Event {
         return true;
     }
 
+    @Override
+    public int compareTo(@NonNull Event o) {
+        if(date.compareTo(o.getDate())>0){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }
 }

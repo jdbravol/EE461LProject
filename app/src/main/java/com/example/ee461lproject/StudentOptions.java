@@ -98,6 +98,7 @@ public class StudentOptions extends AppCompatActivity {
         // TODO: Test searchMode to make sure feed doesn't change when a new event is added
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
+            Collections.sort(allEventList);
 
             if (!searchMode.get()) {
                 mainFeedAdapter.clear();
@@ -117,6 +118,7 @@ public class StudentOptions extends AppCompatActivity {
 
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
+            Collections.sort(allEventList);
             mainFeedAdapter.clear();
             mainFeedAdapter.addAll(Database.eventsByOrg(allEventList, orgName));
             mainFeedAdapter.notifyDataSetChanged();

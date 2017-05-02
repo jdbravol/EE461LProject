@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class Student_Tab1_SearchEvents extends Fragment {
 
         //set view
         View rootView =  inflater.inflate(R.layout.tab1_search_events, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         //Link objects in fragment
         final EditText dateField = (EditText) rootView.findViewById(R.id.dateField);

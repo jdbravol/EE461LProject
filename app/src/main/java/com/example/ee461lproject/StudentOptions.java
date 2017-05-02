@@ -54,6 +54,8 @@ public class StudentOptions extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         // Create the adapter that will return a fragment for each of the two
         // primary sections of the activity.
         mSectionsPagerAdapter = new StudentOptions.SectionsPagerAdapter(getSupportFragmentManager());

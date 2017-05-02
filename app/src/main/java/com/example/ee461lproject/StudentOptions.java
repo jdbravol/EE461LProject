@@ -47,12 +47,14 @@ public class StudentOptions extends AppCompatActivity {
     public static ArrayList<Event> allEventList =Database.allEvents();
     public static Context context;
     public static EventFeedAdapter allEventFeedAdapter;
+    public static EventFeedAdapter subscribedEventFeedAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
+        StudentOptions.context = getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,6 +74,8 @@ public class StudentOptions extends AppCompatActivity {
 
         Collections.sort(allEventList);
         allEventFeedAdapter = new EventFeedAdapter(context, allEventList);
+        ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getUid());
+        subscribedEventFeedAdapter = new EventFeedAdapter(context, subscribedEvents);
     }
 
     public EventFeedAdapter getAllEventFeedAdapter(){
@@ -79,9 +83,7 @@ public class StudentOptions extends AppCompatActivity {
     }
 
     public EventFeedAdapter getSubscribedFeedAdapter(){
-        ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getUid());
-        EventFeedAdapter subscribedFeed = new EventFeedAdapter(context, subscribedEvents);
-        return subscribedFeed;
+        return subscribedEventFeedAdapter;
     }
 
     public static void updateUnderlyingEvents() {

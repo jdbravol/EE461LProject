@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,14 @@ public class Student_Tab1_SearchEvents extends Fragment {
         goButtonOrgName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO make this transition work and do same for other button
+                Fragment frag = new Student_Tab1_EventList();
 
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.Student_searchedEventsListParent, frag);
+                transaction.addToBackStack(null);
+
+                transaction.commit();
             }
         });
 

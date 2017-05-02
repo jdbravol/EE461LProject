@@ -41,6 +41,7 @@ public class OrganizationOptions extends AppCompatActivity {
     public static Context context;
     public static EventFeedAdapter eventFeedAdapter;
     public FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,13 @@ public class OrganizationOptions extends AppCompatActivity {
             OrganizationOptions.this.finish();
         }
 
+        else if(id == R.id.action_logout){
+            Log.d(TAG, "Clicked logout");
+            mAuth.signOut();
+            Intent splashIntent = new Intent(OrganizationOptions.this, SplashActivity.class);
+            OrganizationOptions.this.startActivity(splashIntent);
+            OrganizationOptions.this.finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 

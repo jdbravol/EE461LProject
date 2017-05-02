@@ -17,6 +17,9 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Date;
 
 public class StudentOptions extends AppCompatActivity {
@@ -29,7 +32,7 @@ public class StudentOptions extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private StudentOptions.SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -58,7 +61,6 @@ public class StudentOptions extends AppCompatActivity {
 
     }
 
-    // TODO: Replace default options with logout
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,6 +80,14 @@ public class StudentOptions extends AppCompatActivity {
             Log.d(TAG, "Clicked action_settings");
             Intent settingsIntent = new Intent(StudentOptions.this, Settings.class);
             StudentOptions.this.startActivity(settingsIntent);
+            StudentOptions.this.finish();
+        }
+
+        else if(id == R.id.action_logout){
+            Log.d(TAG, "Clicked logout");
+            mAuth.signOut();
+            Intent splashIntent = new Intent(StudentOptions.this, SplashActivity.class);
+            StudentOptions.this.startActivity(splashIntent);
             StudentOptions.this.finish();
         }
 

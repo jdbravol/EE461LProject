@@ -21,17 +21,19 @@
             android:textAlignment="center"
             android:textColor="@color/burntOrange"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="false"/>
 
         <TextView
-            android:id="@+id/orgTitleOrg"
+            android:id="@+id/orgTitleStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="10dp"
             android:text="Organization"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/nameFieldOrg"
@@ -52,7 +54,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="10dp"
             android:text="Date"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/dateFieldOrg"
@@ -73,7 +76,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="10dp"
             android:text="Location"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/eventLocationField"
@@ -83,7 +87,8 @@
             android:ems="10"
             android:fontFamily="sans-serif-smallcaps"
             android:hint="Location"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/title_description"
@@ -93,7 +98,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="10dp"
             android:text="Description"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/org_EventDescription"
@@ -105,7 +111,8 @@
             android:hint="Description"
             android:inputType="textMultiLine"
             android:scrollIndicators="right"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/categoryTitleOrg"
@@ -115,7 +122,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="10dp"
             android:text="Category"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/categoryFieldOrg"
@@ -128,7 +136,8 @@
             android:inputType="textPersonName"
             android:paddingBottom="20dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            android:focusable="false"/>
 
         <Space
             android:layout_width="match_parent"
@@ -142,7 +151,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="0dp"
             android:text="Free food"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/rsvpTitleOrg"
@@ -153,7 +163,7 @@
             android:paddingTop="10dp"
             android:text="RSVP List"
             android:textSize="20sp"
-            />
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/rsvpFieldOrg"
@@ -166,7 +176,8 @@
             android:inputType="textPersonName"
             android:paddingBottom="20dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            android:focusable="false"/>
 
 
     </LinearLayout>

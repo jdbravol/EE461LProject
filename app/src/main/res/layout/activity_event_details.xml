@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/eventNameOrg"
+        android:id="@+id/eventNameStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/orgTitleOrg"
+        android:id="@+id/orgTitleStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -36,10 +36,10 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventNameOrg" />
+        app:layout_constraintTop_toBottomOf="@+id/eventNameStudent" />
 
     <EditText
-        android:id="@+id/orgTextOrg"
+        android:id="@+id/orgTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-80dp"
@@ -49,8 +49,8 @@
         android:hint="Org FooBar"
         android:inputType="none"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/orgTitleOrg"
-        app:layout_constraintTop_toBottomOf="@+id/orgTitleOrg"
+        app:layout_constraintLeft_toLeftOf="@+id/orgTitleStudent"
+        app:layout_constraintTop_toBottomOf="@+id/orgTitleStudent"
         android:focusable="false"/>
 
     <TextView
@@ -62,11 +62,11 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="Date"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/orgTextOrg"
-        app:layout_constraintTop_toBottomOf="@+id/orgTextOrg" />
+        app:layout_constraintLeft_toLeftOf="@+id/orgTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/orgTextStudent" />
 
     <EditText
-        android:id="@+id/dateTextOrg"
+        android:id="@+id/dateTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-1dp"
@@ -89,11 +89,11 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="Location"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/dateTextOrg"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextOrg" />
+        app:layout_constraintLeft_toLeftOf="@+id/dateTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextStudent" />
 
     <EditText
-        android:id="@+id/locationTextOrg"
+        android:id="@+id/locationTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-12dp"
@@ -116,8 +116,8 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="Description"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/locationTextOrg"
-        app:layout_constraintTop_toBottomOf="@+id/locationTextOrg" />
+        app:layout_constraintLeft_toLeftOf="@+id/locationTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextStudent" />
 
     <Button
         android:id="@+id/rsvpButtonStudent"

@@ -30,7 +30,7 @@ public class Student_Tab2_MainEvents extends Fragment {
 
         final Button backToMainFeed = (Button) rootView.findViewById(R.id.backToMainFeed);
 
-        StudentOptions parent = (StudentOptions) getActivity();
+        final StudentOptions parent = (StudentOptions) getActivity();
         mainEventsFeed.setAdapter(parent.getMainFeedAdapter());
 
         mainEventsFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,6 +50,7 @@ public class Student_Tab2_MainEvents extends Fragment {
             public void onClick(View v) {
                 StudentOptions.searchMode.set(false);
                 backToMainFeed.setVisibility(View.GONE);
+                parent.changeTabName("Main");
                 StudentOptions.updateUnderlyingEvents();
             }
         });

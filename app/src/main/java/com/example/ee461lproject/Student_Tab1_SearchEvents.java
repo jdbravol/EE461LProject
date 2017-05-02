@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.Calendar;
@@ -85,7 +86,9 @@ public class Student_Tab1_SearchEvents extends Fragment {
                 backToMainFeed.setVisibility(View.VISIBLE);
 
                 TabLayout tabLayout = (TabLayout) parent.findViewById(R.id.tabs);
+                parent.changeTabName("Results");
                 tabLayout.getTabAt(1).select();
+
 
                 Log.d(TAG, "leaving goButtonOrgName's onClick method");
             }
@@ -101,6 +104,7 @@ public class Student_Tab1_SearchEvents extends Fragment {
                 backToMainFeed.setVisibility(View.VISIBLE);
 
                 TabLayout tabLayout = (TabLayout) parent.findViewById(R.id.tabs);
+                parent.changeTabName("Results");
                 tabLayout.getTabAt(1).select();
             }
         });

@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -46,6 +48,7 @@ public class StudentOptions extends AppCompatActivity {
     public static String user;
     public static AtomicBoolean searchMode = new AtomicBoolean(false);
     public static final Object mainFeedAdapterLock = new Object();
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +72,14 @@ public class StudentOptions extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         // Fetch the list of events again as static initialization only runs once.
         // Otherwise, in the case that we make an event in an org account, log out, then log into a
         // student account, the new event wouldn't show up in the student's feed.
         allEventList = Database.allEvents();
-
+        allEventList = Database.futureEvents(allEventList);
         searchMode = new AtomicBoolean(false);
         Collections.sort(allEventList);
         mainFeedAdapter = new EventFeedAdapter(context, allEventList);
@@ -99,6 +102,7 @@ public class StudentOptions extends AppCompatActivity {
         // TODO: Test searchMode to make sure feed doesn't change when a new event is added
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
+            allEventList = Database.futureEvents(allEventList);
             Collections.sort(allEventList);
 
             if (!searchMode.get()) {
@@ -155,6 +159,14 @@ public class StudentOptions extends AppCompatActivity {
         }
     }
 
+    /*
+    * Written to change the middle tab name to a new String
+    *
+     */
+    public void changeTabName(String name){
+        tabLayout.getTabAt(1).setText(name);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -231,7 +243,7 @@ public class StudentOptions extends AppCompatActivity {
                 case 1:
                     return "MAIN";
                 case 2:
-                    return "SUBSCRIBED";
+                    return "RSVPs";
             }
             return null;
         }

@@ -144,10 +144,13 @@ public class Database{
 
         synchronized (eventsWriteLock) {
             Date currentDate = new Date();
+            currentDate.setMonth(currentDate.getMonth()+1);
+            currentDate.setYear(currentDate.getYear()+1900);
             ArrayList<Event> futureEvents = new ArrayList<Event>();
-
+            Log.d(TAG, "FUTURE EVENTS");
             for(Event e : origEvents){
-                if(e.getDate().compareTo(currentDate)>= 0){
+                if(e.getDate().compareTo(currentDate)> 0){
+                    Log.d("FUTURE", e.eventName + " " + e.getDate() + "> " + currentDate);
                     futureEvents.add(e);
                 }
             }

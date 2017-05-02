@@ -1,158 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.ee461lproject.event_details">
 
-    <TextView
-        android:id="@+id/eventNameStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Event Name"
-        android:textColor="@color/burntOrange"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/eventTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Organization"
-        android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventNameStudent" />
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Event Name"
+            android:textColor="@color/burntOrange"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-    <EditText
-        android:id="@+id/orgText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:hint="Org FooBar"
-        android:inputType="none"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/eventTitle"
-        app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Organization"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventName"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/dateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Date"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/orgText"
-        app:layout_constraintTop_toBottomOf="@+id/orgText" />
+        <EditText
+            android:id="@+id/orgText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Org FooBar"
+            android:inputType="none"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/eventTitle"
+            app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
 
-    <EditText
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:hint="99/99/9999"
-        android:inputType="none"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/dateTitle"
-        app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
+        <TextView
+            android:id="@+id/dateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Date"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/orgText"
+            app:layout_constraintTop_toBottomOf="@+id/orgText" />
 
-    <TextView
-        android:id="@+id/locationTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Location"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/dateText"
-        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+        <EditText
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="99/99/9999"
+            android:inputType="none"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/dateTitle"
+            app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
 
-    <EditText
-        android:id="@+id/locationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:hint="123 University Drive"
-        android:inputType="none"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/locationTitle"
-        app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
+        <TextView
+            android:id="@+id/locationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Location"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/dateText"
+            app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
-    <TextView
-        android:id="@+id/descriptionTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Description"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/locationText"
-        app:layout_constraintTop_toBottomOf="@+id/locationText" />
+        <EditText
+            android:id="@+id/locationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="123 University Drive"
+            android:inputType="none"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/locationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
 
-    <Button
-        android:id="@+id/rsvpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="RSVP"
-        app:layout_constraintBaseline_toBaselineOf="@+id/createEventButton"
-        app:layout_constraintRight_toLeftOf="@+id/createEventButton" />
+        <TextView
+            android:id="@+id/descriptionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Description"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/locationText"
+            app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
-    <Button
-        android:id="@+id/createEventButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="100dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Subscribe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <Button
+            android:id="@+id/rsvpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="RSVP"
+            android:layout_marginEnd="10dp"
+            tools:layout_editor_absoluteX="77dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/createEventButton" />
 
-    <EditText
-        android:id="@+id/descriptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:hint="This is an event."
-        android:inputType="none"
-        android:scrollIndicators="right"
-        android:scrollbars="vertical"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/createEventButton"
-        app:layout_constraintLeft_toLeftOf="@+id/descriptionTitle"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/createEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginRight="93dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Subscribe"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="504dp"
+            android:layout_marginEnd="95dp" />
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="This is an event."
+            android:inputType="none"
+            android:scrollIndicators="right"
+            android:scrollbars="vertical"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/rsvpButton"
+            app:layout_constraintLeft_toLeftOf="@+id/descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

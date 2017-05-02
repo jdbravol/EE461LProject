@@ -51,8 +51,10 @@ public class Org_Tab1_CreateEvent extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         View rootView =  inflater.inflate(R.layout.tab1_create_event, container, false);
+
+        //this beautiful line of code - love it
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         Log.d(TAG, "Current User: " + user.getDisplayName());
 

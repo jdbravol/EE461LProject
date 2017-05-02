@@ -4,6 +4,7 @@ package com.example.ee461lproject;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import org.parceler.Parcel;
 @Parcel
 public class Event implements Comparable<Event>{
 
+    private static final String TAG = "Event";
     String uniqueID;
     String eventName;
     String organizer;
@@ -27,6 +29,10 @@ public class Event implements Comparable<Event>{
     boolean freeFood;
     String category;
     int mData;
+    private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private String month;
+    private String year;
 
     public Event(){}
 
@@ -171,4 +177,40 @@ public class Event implements Comparable<Event>{
             return -1;
         }
     }
+
+    private void setMonthAndYear(String origMonth, String origYear) {
+        int monthIndex;
+        for (monthIndex = 0; monthIndex < 12; monthIndex++) {
+            if (origMonth.equals(months[monthIndex])) {
+                break;
+            }
+        }
+
+        int adjustedYear = 0;
+        monthIndex = monthIndex - 1;
+        if (monthIndex < 0) {
+            monthIndex += 12;
+            adjustedYear = Integer.parseInt(origYear) - 1901;
+        }
+        else {
+            adjustedYear = Integer.parseInt(origYear) - 1900;
+        }
+        year = String.valueOf(adjustedYear);
+        month = months[monthIndex] + ".";
+    }
+    public String getDateString(){
+        String[] dateFields = this.getDate().toString().split(" ");
+        String time = "";
+        String dayOfMonth = "";
+        String date = "";
+        month = "";
+        year = "";
+        setMonthAndYear(dateFields[1], dateFields[5]);
+        dayOfMonth = dateFields[2].trim();
+        time = dateFields[3].trim();
+        date = month + " " + dayOfMonth + ", " + year + " at " + time;
+        Log.d(TAG, "the date string: " + date);
+        return date;
+    }
+
 }

@@ -12,10 +12,6 @@ import org.parceler.Parcels;
 public class event_details extends AppCompatActivity {
 
     private String TAG = "event_details";
-    private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-            "Aug", "Sep", "Oct", "Nov", "Dec"};
-    private String month;
-    private String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,45 +28,11 @@ public class event_details extends AppCompatActivity {
 
 
         orgText.setText(event.getOrganizer());
-        dateText.setText(getDateString(event));
+        dateText.setText(event.getDateString());
         locationText.setText(event.getLocation());
         descriptionText.setText(event.getDescription());
         title.setText(event.getEventName());
     }
 
-    private void setMonthAndYear(String origMonth, String origYear) {
-        int monthIndex;
-        for (monthIndex = 0; monthIndex < 12; monthIndex++) {
-            if (origMonth.equals(months[monthIndex])) {
-                break;
-            }
-        }
-
-        int adjustedYear = 0;
-        monthIndex = monthIndex - 1;
-        if (monthIndex < 0) {
-            monthIndex += 12;
-            adjustedYear = Integer.parseInt(origYear) - 1901;
-        }
-        else {
-            adjustedYear = Integer.parseInt(origYear) - 1900;
-        }
-        year = String.valueOf(adjustedYear);
-        month = months[monthIndex] + ".";
-    }
-     private String getDateString(Event e){
-         String[] dateFields = e.getDate().toString().split(" ");
-         String time = "";
-         String dayOfMonth = "";
-         String date = "";
-         month = "";
-         year = "";
-         setMonthAndYear(dateFields[1], dateFields[5]);
-         dayOfMonth = dateFields[2].trim();
-         time = dateFields[3].trim();
-         date = month + " " + dayOfMonth + ", " + year + " at " + time;
-         Log.d(TAG, "the date string: " + date);
-         return date;
-     }
 
 }

@@ -1,10 +1,13 @@
 package com.example.ee461lproject;
 
 import android.app.DatePickerDialog;
+import android.app.TabActivity;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TabHost;
 
 import java.sql.Time;
 import java.util.Calendar;
@@ -23,7 +27,7 @@ import java.util.Date;
 
 public class Student_Tab1_SearchEvents extends Fragment {
 
-
+    private static final String TAG = "Student_Tab1";
 
     @Nullable
     @Override
@@ -32,6 +36,8 @@ public class Student_Tab1_SearchEvents extends Fragment {
         //set view
         View rootView =  inflater.inflate(R.layout.tab1_search_events, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        final StudentOptions parent = (StudentOptions) getActivity();
 
         //Link objects in fragment
         final EditText dateField = (EditText) rootView.findViewById(R.id.dateField);
@@ -69,21 +75,26 @@ public class Student_Tab1_SearchEvents extends Fragment {
         goButtonOrgName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO make this transition work and do same for other button
-                Fragment frag = new Student_Tab1_EventList();
+                Log.d(TAG, "entering goButtonOrgName's onClick method");
 
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.Student_searchedEventsListParent, frag);
-                transaction.addToBackStack(null);
+                StudentOptions.searchMode.set(true);
 
-                transaction.commit();
+                parent.filterAdapterByOrg(orgName.getText().toString().trim());
+                Button backToMainFeed = (Button) parent.findViewById(R.id.backToMainFeed);
+                backToMainFeed.setVisibility(View.VISIBLE);
+
+                TabLayout tabLayout = (TabLayout) parent.findViewById(R.id.tabs);
+                tabLayout.getTabAt(1).select();
+
+                Log.d(TAG, "leaving goButtonOrgName's onClick method");
             }
         });
 
         goEverythingElseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // TODO: Implement this search
+                // It will be very similar to the one above
             }
         });
 

@@ -31,7 +31,11 @@ public class org_event_details extends AppCompatActivity {
         TextView locationField = (TextView) findViewById(R.id.locationFieldOrg);
         TextView descriptionText = (TextView) findViewById(R.id.descriptionFieldOrg);
         TextView categoryText = (TextView) findViewById(R.id.categoryFieldOrg);
+
+        // TODO: Replace rsvpField w/ multi-line text box in layout
+        // Currently, it's not displaying users on their own line
         TextView rsvpField = (TextView) findViewById(R.id.rsvpFieldOrg);
+
         CheckBox freeFood = (CheckBox) findViewById(R.id.freeFoodOrg);
 
         title.setText(event.getEventName());
@@ -47,6 +51,7 @@ public class org_event_details extends AppCompatActivity {
             freeFood.setChecked(false);
         }
         String RSVPlist = getRsvpList(event);
+
         rsvpField.setText(RSVPlist);
     }
 

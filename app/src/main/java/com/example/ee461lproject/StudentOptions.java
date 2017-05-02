@@ -1,6 +1,5 @@
 package com.example.ee461lproject;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,16 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class StudentOptions extends AppCompatActivity {
     /**
@@ -45,12 +40,16 @@ public class StudentOptions extends AppCompatActivity {
     private final static String TAG = "StudentOptionsActivity";
     public static ArrayList<Event> allEventList = Database.allEvents();
     public static Context context;
-    public static EventFeedAdapter allEventFeedAdapter;
+    public static EventFeedAdapter mainFeedAdapter;
     public static EventFeedAdapter subscribedEventFeedAdapter;
     public static String user;
+    public static AtomicBoolean searchMode = new AtomicBoolean(false);
+    public static final Object mainFeedAdapterLock = new Object();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d(TAG, "StudentOptions::onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
@@ -72,15 +71,21 @@ public class StudentOptions extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        // Fetch the list of events again as static initialization only runs once.
+        // Otherwise, in the case that we make an event in an org account, log out, then log into a
+        // student account, the new event wouldn't show up in the student's feed.
+        allEventList = Database.allEvents();
+
+        searchMode = new AtomicBoolean(false);
         Collections.sort(allEventList);
-        allEventFeedAdapter = new EventFeedAdapter(context, allEventList);
+        mainFeedAdapter = new EventFeedAdapter(context, allEventList);
         ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getDisplayName());
         Log.d(TAG, "size of: " + subscribedEvents.size());
         subscribedEventFeedAdapter = new EventFeedAdapter(context, subscribedEvents);
     }
 
-    public EventFeedAdapter getAllEventFeedAdapter(){
-        return allEventFeedAdapter;
+    public EventFeedAdapter getMainFeedAdapter(){
+        return mainFeedAdapter;
     }
 
     public EventFeedAdapter getSubscribedFeedAdapter(){
@@ -90,16 +95,33 @@ public class StudentOptions extends AppCompatActivity {
     public static void updateUnderlyingEvents() {
         Log.d(TAG, "entering updateUnderlyingEvents()");
 
-        allEventList = Database.allEvents();
-        allEventFeedAdapter.clear();
-        allEventFeedAdapter.addAll(allEventList);
-        allEventFeedAdapter.notifyDataSetChanged();
+        // TODO: Test searchMode to make sure feed doesn't change when a new event is added
+        synchronized (mainFeedAdapterLock) {
+            allEventList = Database.allEvents();
 
-        subscribedEventFeedAdapter.clear();
-        subscribedEventFeedAdapter.addAll(Database.RSVPEvents(allEventList, user));
-        subscribedEventFeedAdapter.notifyDataSetChanged();
+            if (!searchMode.get()) {
+                mainFeedAdapter.clear();
+                mainFeedAdapter.addAll(allEventList);
+                mainFeedAdapter.notifyDataSetChanged();
+            }
+
+            subscribedEventFeedAdapter.clear();
+            subscribedEventFeedAdapter.addAll(Database.RSVPEvents(allEventList, user));
+            subscribedEventFeedAdapter.notifyDataSetChanged();
+        }
 
         Log.d(TAG, "size of underlyingOrgEvents: " + allEventList.size());
+    }
+
+    public void filterAdapterByOrg(String orgName) {
+
+        synchronized (mainFeedAdapterLock) {
+            allEventList = Database.allEvents();
+            mainFeedAdapter.clear();
+            mainFeedAdapter.addAll(Database.eventsByOrg(allEventList, orgName));
+            mainFeedAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override

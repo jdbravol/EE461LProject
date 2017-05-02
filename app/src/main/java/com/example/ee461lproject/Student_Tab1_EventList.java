@@ -1,6 +1,5 @@
 package com.example.ee461lproject;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -9,16 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-
-import java.sql.Time;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by Michael Glasser on 5/1/2017.
@@ -38,7 +29,7 @@ public class Student_Tab1_EventList extends Fragment {
         View rootView =  inflater.inflate(R.layout.tab1_searched_events_list, container, false);
         ListView mainEventsFeed = (ListView) rootView.findViewById(R.id.Student_searchedEventsListView);
         StudentOptions parent = (StudentOptions) getActivity();
-        mainEventsFeed.setAdapter(parent.getAllEventFeedAdapter());
+        mainEventsFeed.setAdapter(parent.getMainFeedAdapter());
 
         mainEventsFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

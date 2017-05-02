@@ -63,6 +63,7 @@ public class event_details extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // TODO: Find a way to go back to main feed rather than search page
             Intent userOptionsIntent = new Intent(this, StudentOptions.class);
             startActivity(userOptionsIntent);
             this.finish();

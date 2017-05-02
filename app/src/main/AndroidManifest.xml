@@ -33,7 +33,7 @@
             android:name=".OrganizationOptions"
             android:label=" "
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
             android:screenOrientation="portrait"/>
 
             <!-- <intent-filter> -->
@@ -46,7 +46,7 @@
             android:name=".Settings"
             android:label=" "
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
             android:screenOrientation="portrait"/>
 
         <!-- <intent-filter> -->

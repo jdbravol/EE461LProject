@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -86,7 +87,7 @@ public class Settings extends AppCompatActivity {
                     UserProfileChangeRequest request = requestBuilder.build();
                     user.updateProfile(request);
                     Toast.makeText(Settings.this,
-                            "Updated Name succesfully." +  user.getDisplayName(),
+                            "Updated Name succesfully." + user.getDisplayName(),
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Settings.this,
@@ -151,4 +152,36 @@ public class Settings extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            updateUI(mAuth.getCurrentUser());
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        String type = Database.getUserType(user.getUid());
+        switch (type) {
+            case "Student":
+                loadUserOptions(user);
+                break;
+            case "Organization":
+                loadOrganizationOptions(user);
+        }
+    }
+
+    private void loadUserOptions(FirebaseUser user) {
+        Intent userOptionsIntent = new Intent(this, StudentOptions.class);
+        startActivity(userOptionsIntent);
+    }
+
+    private void loadOrganizationOptions(FirebaseUser user) {
+        Intent userOptionsIntent = new Intent(this, OrganizationOptions.class);
+        Database.writeToOrg = true;
+        startActivity(userOptionsIntent);
+    }
+
 }

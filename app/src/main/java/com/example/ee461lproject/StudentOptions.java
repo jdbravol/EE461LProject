@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class StudentOptions extends AppCompatActivity {
@@ -43,7 +44,9 @@ public class StudentOptions extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private final static String TAG = "StudentOptionsActivity";
-
+    public static ArrayList<Event> allEventList =Database.allEvents();
+    public static Context context;
+    public static EventFeedAdapter allEventFeedAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,30 @@ public class StudentOptions extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        Collections.sort(allEventList);
+        allEventFeedAdapter = new EventFeedAdapter(context, allEventList);
+    }
+
+    public EventFeedAdapter getAllEventFeedAdapter(){
+        return allEventFeedAdapter;
+    }
+
+    public EventFeedAdapter getSubscribedFeedAdapter(){
+        ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getUid());
+        EventFeedAdapter subscribedFeed = new EventFeedAdapter(context, subscribedEvents);
+        return subscribedFeed;
+    }
+
+    public static void updateUnderlyingEvents() {
+        Log.d(TAG, "entering updateUnderlyingEvents()");
+
+        allEventList = Database.allEvents();
+        allEventFeedAdapter.clear();
+        allEventFeedAdapter.addAll(allEventList);
+        allEventFeedAdapter.notifyDataSetChanged();
+
+        Log.d(TAG, "size of underlyingOrgEvents: " + allEventList.size());
     }
 
     @Override

@@ -133,7 +133,7 @@ public class Login extends AppCompatActivity {
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
         ArrayList<String> fields = new ArrayList<String>(Arrays.asList(email, password));
-        if (!AuthenticationTools.validateForm(fields)) {
+        if (!AuthenticationTools.validateEmailPassword(email, password)) {
 
             Toast.makeText(Login.this,
                     "Fill out the form completely.",

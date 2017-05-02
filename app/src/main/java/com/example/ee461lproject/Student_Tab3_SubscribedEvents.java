@@ -17,5 +17,6 @@ public class Student_Tab3_SubscribedEvents extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.tab3_subscribed_events, container, false);
+
     }
 }

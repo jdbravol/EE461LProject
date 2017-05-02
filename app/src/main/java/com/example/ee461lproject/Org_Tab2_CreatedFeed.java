@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.parceler.Parcels;
 
 
 /**
@@ -36,7 +37,8 @@ public class Org_Tab2_CreatedFeed extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Event e = (Event) parent.getAdapter().getItem(position);
                 Intent eventIntent = new Intent(getActivity(), event_details.class);
-                eventIntent.putExtra("EVENT", (Parcelable) e);
+                eventIntent.putExtra("EVENT", Parcels.wrap(e));
+                startActivity(eventIntent);
             }
         });
 

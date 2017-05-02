@@ -48,6 +48,7 @@ public class StudentOptions extends AppCompatActivity {
     public static Context context;
     public static EventFeedAdapter allEventFeedAdapter;
     public static EventFeedAdapter subscribedEventFeedAdapter;
+    public static String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,8 @@ public class StudentOptions extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+        user = mAuth.getCurrentUser().getDisplayName();
+        Log.d(TAG, "User is " + user);
         // Create the adapter that will return a fragment for each of the two
         // primary sections of the activity.
         mSectionsPagerAdapter = new StudentOptions.SectionsPagerAdapter(getSupportFragmentManager());
@@ -74,7 +75,8 @@ public class StudentOptions extends AppCompatActivity {
 
         Collections.sort(allEventList);
         allEventFeedAdapter = new EventFeedAdapter(context, allEventList);
-        ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getUid());
+        ArrayList<Event> subscribedEvents = Database.RSVPEvents(allEventList, mAuth.getCurrentUser().getDisplayName());
+        Log.d(TAG, "size of: " + subscribedEvents.size());
         subscribedEventFeedAdapter = new EventFeedAdapter(context, subscribedEvents);
     }
 
@@ -94,6 +96,9 @@ public class StudentOptions extends AppCompatActivity {
         allEventFeedAdapter.addAll(allEventList);
         allEventFeedAdapter.notifyDataSetChanged();
 
+        subscribedEventFeedAdapter.clear();
+        subscribedEventFeedAdapter.addAll(Database.RSVPEvents(allEventList, user));
+        subscribedEventFeedAdapter.notifyDataSetChanged();
         Log.d(TAG, "size of underlyingOrgEvents: " + allEventList.size());
     }
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.ee461lproject.event_details">
 
+
     <TextView
         android:id="@+id/eventNameStudent"
         android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventTitle"
+        android:id="@+id/orgTitleStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -38,21 +39,22 @@
         app:layout_constraintTop_toBottomOf="@+id/eventNameStudent" />
 
     <EditText
-        android:id="@+id/orgText"
+        android:id="@+id/orgTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="-80dp"
+        android:layout_marginTop="-44dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:hint="Org FooBar"
         android:inputType="none"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/eventTitle"
-        app:layout_constraintTop_toBottomOf="@+id/eventTitle" />
+        app:layout_constraintLeft_toLeftOf="@+id/orgTitleStudent"
+        app:layout_constraintTop_toBottomOf="@+id/orgTitleStudent"
+        android:focusable="false"/>
 
     <TextView
-        android:id="@+id/dateTitle"
+        android:id="@+id/dateTitleStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -60,73 +62,75 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="Date"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/orgText"
-        app:layout_constraintTop_toBottomOf="@+id/orgText" />
+        app:layout_constraintLeft_toLeftOf="@+id/orgTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/orgTextStudent" />
 
     <EditText
-        android:id="@+id/dateText"
+        android:id="@+id/dateTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-1dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:hint="99/99/9999"
         android:inputType="none"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/dateTitle"
-        app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
+        app:layout_constraintLeft_toLeftOf="@+id/dateTitleStudent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTitleStudent"
+        android:focusable="false"/>
 
     <TextView
-        android:id="@+id/locationTitle"
+        android:id="@+id/locationTitleStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="-12dp"
+        android:layout_marginTop="9dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Location"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/dateText"
-        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+        app:layout_constraintLeft_toLeftOf="@+id/dateTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextStudent" />
 
     <EditText
-        android:id="@+id/locationText"
+        android:id="@+id/locationTextStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="-12dp"
+        android:layout_marginTop="1dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:hint="123 University Drive"
         android:inputType="none"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@+id/locationTitle"
-        app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
+        app:layout_constraintLeft_toLeftOf="@+id/locationTitleStudent"
+        app:layout_constraintTop_toBottomOf="@+id/locationTitleStudent"
+        android:focusable="false"/>
 
     <TextView
-        android:id="@+id/descriptionTitle"
+        android:id="@+id/descriptionTitleStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="-12dp"
+        android:layout_marginTop="9dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Description"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/locationText"
-        app:layout_constraintTop_toBottomOf="@+id/locationText" />
+        app:layout_constraintLeft_toLeftOf="@+id/locationTextStudent"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextStudent" />
 
     <Button
-        android:id="@+id/rsvpButton"
+        android:id="@+id/rsvpButtonStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="RSVP"
-        app:layout_constraintBaseline_toBaselineOf="@+id/createEventButton"
-        app:layout_constraintRight_toLeftOf="@+id/createEventButton" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/subscibeButtonStudent"
+        app:layout_constraintRight_toLeftOf="@+id/subscibeButtonStudent" />
 
     <Button
-        android:id="@+id/createEventButton"
+        android:id="@+id/subscibeButtonStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -137,9 +141,9 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
-        android:id="@+id/descriptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:id="@+id/descriptionTextStudent"
+        android:layout_width="195dp"
+        android:layout_height="181dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="8dp"
@@ -151,8 +155,9 @@
         android:scrollbars="vertical"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/createEventButton"
-        app:layout_constraintLeft_toLeftOf="@+id/descriptionTitle"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintLeft_toLeftOf="@+id/descriptionTitleStudent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTitleStudent"
+        app:layout_constraintVertical_bias="0.0"
+        android:focusable="false"/>
 
 </android.support.constraint.ConstraintLayout>

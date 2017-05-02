@@ -1,9 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.ee461lproject.org_event_details">
+    android:layout_height="wrap_content"
+    tools:context="com.example.ee461lproject.Org_Tab1_CreateEvent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/eventTitleOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Event Name"
+            android:textAlignment="center"
+            android:textColor="@color/burntOrange"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/orgTitleStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Organization"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/nameFieldOrg"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:focusable="false"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Foo organization"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/dateTitleOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Date"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/dateFieldOrg"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:focusable="false"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="99/99/9999"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/locationTitleOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Location"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/eventLocationField"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Location"
+            android:inputType="textPersonName"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/title_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Description"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/org_EventDescription"
+            android:layout_width="328dp"
+            android:layout_height="128dp"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:scrollIndicators="right"
+            android:scrollbars="vertical"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/categoryTitleOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="Category"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/categoryFieldOrg"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Category"
+            android:inputType="textPersonName"
+            android:paddingBottom="20dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:focusable="false"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <CheckBox
+            android:id="@+id/freeFoodOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="0dp"
+            android:text="Free food"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/rsvpTitleOrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingTop="10dp"
+            android:text="RSVP List"
+            android:textSize="20sp"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/rsvpFieldOrg"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="Category"
+            android:inputType="textPersonName"
+            android:paddingBottom="20dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:focusable="false"/>
+
+
+    </LinearLayout>
+</ScrollView>

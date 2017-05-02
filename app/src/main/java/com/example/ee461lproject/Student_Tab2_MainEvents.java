@@ -25,11 +25,8 @@ public class Student_Tab2_MainEvents extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.tab2_main_events, container, false);
-
-
-
-        //linking
         ListView mainEventsFeed = (ListView) rootView.findViewById(R.id.student_eventListView);
         StudentOptions parent = (StudentOptions) getActivity();
         mainEventsFeed.setAdapter(parent.getAllEventFeedAdapter());

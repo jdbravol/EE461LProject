@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -32,6 +33,9 @@ public class Student_Tab1_SearchEvents extends Fragment {
         //Link objects in fragment
         final EditText dateField = (EditText) rootView.findViewById(R.id.dateField);
         final EditText orgName = (EditText) rootView.findViewById(R.id.orgNameField);
+        final EditText category = (EditText) rootView.findViewById(R.id.categoryField);
+        final Button goButtonOrgName = (Button) rootView.findViewById(R.id.goButtonOrgName);
+        final Button goEverythingElseButton = (Button) rootView.findViewById(R.id.goButtonEverythingElse);
 
         //add functionality to each object
         dateField.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +59,20 @@ public class Student_Tab1_SearchEvents extends Fragment {
 
                 DatePickerDialog dialog = new DatePickerDialog(getActivity(), dpd, mYear, mMonth, mDay);
                 dialog.show();
+
+            }
+        });
+
+        goButtonOrgName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        goEverythingElseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class StudentOptions extends AppCompatActivity {
@@ -98,6 +99,7 @@ public class StudentOptions extends AppCompatActivity {
         // TODO: Test searchMode to make sure feed doesn't change when a new event is added
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
+            Collections.sort(allEventList);
 
             if (!searchMode.get()) {
                 mainFeedAdapter.clear();
@@ -117,11 +119,40 @@ public class StudentOptions extends AppCompatActivity {
 
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
+            Collections.sort(allEventList);
             mainFeedAdapter.clear();
             mainFeedAdapter.addAll(Database.eventsByOrg(allEventList, orgName));
             mainFeedAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    public void filterAdapterByEverythingElse(String cat, String date, boolean freeFood){
+        synchronized (mainFeedAdapterLock){
+            allEventList = Database.allEvents();
+            if(!cat.equals("") ){
+                allEventList = Database.categoryEvents(allEventList, cat.trim());
+            }
+            if(!date.equals("")){
+                date = date.trim();
+                Log.d(TAG, "The date string is: " + date);
+                String[] dateFields = date.split("/");
+                int day = Integer.parseInt(dateFields[0]);
+                int month = Integer.parseInt(dateFields[1]);
+                int year = Integer.parseInt(dateFields[2]);
+                Date d = new Date(year, month, day);
+                allEventList = Database.dayEvents(allEventList, d);
+            }
+            if(freeFood){
+                allEventList = Database.freeFoodEvents(allEventList);
+            }
+
+            Collections.sort(allEventList);
+            mainFeedAdapter.clear();
+            mainFeedAdapter.addAll(allEventList);
+            mainFeedAdapter.notifyDataSetChanged();
+
+        }
     }
 
     @Override

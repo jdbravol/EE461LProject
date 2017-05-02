@@ -31,7 +31,6 @@ import static java.lang.String.*;
  * Created by Aaron on 4/17/17.
  */
 
-// TODO: Find better way to handle scrolling when keyboard is up on screen...
 public class Org_Tab1_CreateEvent extends Fragment {
 
     private EditText eventName;

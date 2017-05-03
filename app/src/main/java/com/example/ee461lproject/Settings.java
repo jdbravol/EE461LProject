@@ -87,6 +87,10 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        // TODO: Fix issue with changing display names
+        // If a display name is changed, the events associated with that org account are not
+        // updated. After changing a display name, logging out then logging back in wipes an
+        // org's feed.
         changeNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +102,7 @@ public class Settings extends AppCompatActivity {
                     UserProfileChangeRequest request = requestBuilder.build();
                     user.updateProfile(request);
                     Toast.makeText(Settings.this,
-                            "Updated Name succesfully." + user.getDisplayName(),
+                            "Updated name successfully -- " + user.getDisplayName(),
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Settings.this,

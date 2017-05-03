@@ -66,6 +66,11 @@ public class Event implements Comparable<Event>{
     }
 
     public boolean isInRSVPList(String user){
+
+        if (rsvpList == null) {
+            return false;
+        }
+
         if(rsvpList.containsKey(user)){
             return true;
         }

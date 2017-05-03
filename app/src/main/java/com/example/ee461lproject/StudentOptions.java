@@ -114,14 +114,12 @@ public class StudentOptions extends AppCompatActivity {
     }
 
     public void filterAdapterByOrg(String orgName) {
-
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
             mainFeedAdapter.clear();
             mainFeedAdapter.addAll(Database.eventsByOrg(allEventList, orgName));
             mainFeedAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

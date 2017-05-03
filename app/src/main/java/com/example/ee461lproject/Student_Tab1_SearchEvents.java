@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.Calendar;
@@ -45,7 +47,7 @@ public class Student_Tab1_SearchEvents extends Fragment {
         final EditText category = (EditText) rootView.findViewById(R.id.categoryField);
         final Button goButtonOrgName = (Button) rootView.findViewById(R.id.goButtonOrgName);
         final Button goEverythingElseButton = (Button) rootView.findViewById(R.id.goButtonEverythingElse);
-
+        final CheckBox freeFoodBox = (CheckBox) rootView.findViewById(R.id.checkBox);
         //add functionality to each object
         dateField.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +86,9 @@ public class Student_Tab1_SearchEvents extends Fragment {
                 backToMainFeed.setVisibility(View.VISIBLE);
 
                 TabLayout tabLayout = (TabLayout) parent.findViewById(R.id.tabs);
+                parent.changeTabName("Results");
                 tabLayout.getTabAt(1).select();
+
 
                 Log.d(TAG, "leaving goButtonOrgName's onClick method");
             }
@@ -93,8 +97,15 @@ public class Student_Tab1_SearchEvents extends Fragment {
         goEverythingElseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement this search
-                // It will be very similar to the one above
+                StudentOptions.searchMode.set(true);
+
+                parent.filterAdapterByEverythingElse(category.getText().toString(), dateField.getText().toString(), freeFoodBox.isChecked());
+                Button backToMainFeed = (Button) parent.findViewById(R.id.backToMainFeed);
+                backToMainFeed.setVisibility(View.VISIBLE);
+
+                TabLayout tabLayout = (TabLayout) parent.findViewById(R.id.tabs);
+                parent.changeTabName("Results");
+                tabLayout.getTabAt(1).select();
             }
         });
 

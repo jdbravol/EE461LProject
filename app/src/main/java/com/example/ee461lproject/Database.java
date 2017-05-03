@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import static android.content.ContentValues.TAG;
+
 public class Database{
 
     public static HashMap<String, Event> events = new HashMap<String,Event>();
@@ -88,10 +90,6 @@ public class Database{
         //push a new reference and set the value to the new event
         DatabaseReference newEventRef = eventsRef.push();
         event.setUniqueID(newEventRef.getKey());
-
-        // TODO: We should delete this, although it's not necessary.
-        event.getRsvpList().put(event.getUniqueID(), true);
-
         newEventRef.setValue(event);
     }
 
@@ -142,10 +140,13 @@ public class Database{
 
         synchronized (eventsWriteLock) {
             Date currentDate = new Date();
+            currentDate.setMonth(currentDate.getMonth()+1);
+            currentDate.setYear(currentDate.getYear()+1900);
             ArrayList<Event> futureEvents = new ArrayList<Event>();
-
+            Log.d(TAG, "FUTURE EVENTS");
             for(Event e : origEvents){
-                if(e.getDate().compareTo(currentDate)>= 0){
+                if(e.getDate().compareTo(currentDate)> 0){
+                    Log.d("FUTURE", e.eventName + " " + e.getDate() + "> " + currentDate);
                     futureEvents.add(e);
                 }
             }
@@ -218,9 +219,12 @@ public class Database{
 
             for(Event e : origEvents){
                 Date eventDate = e.getDate();
-                if(eventDate.getDay()==date.getDay() &&
+                if(eventDate.getDate()==date.getDate() &&
                         eventDate.getMonth()==date.getMonth() &&
                         eventDate.getYear() == date.getYear()){
+                    Log.d("DATEISSUES", "DAY " + eventDate.getDate() + "=" + date.getDate());
+                    Log.d("DATEISSUES", "MONTH" + eventDate.getMonth() + "=" + date.getMonth());
+                    Log.d("DATEISSUES", "YEAR" + eventDate.getYear() + "=" + date.getYear());
                     dayEvents.add(e);
                 }
             }

@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +25,7 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
     private TextView feed_EventName;
     private TextView feed_EventDate;
     private TextView feed_EventTime;
+    private ImageView categoryImage;
     private static final String TAG = "EventFeedAdapter";
     private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
                                             "Aug", "Sep", "Oct", "Nov", "Dec"};
@@ -40,7 +41,6 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater eventInflater = LayoutInflater.from(getContext());
-        // TODO: Implement View Holder pattern
         View eventItemView = eventInflater.inflate(R.layout.feed_event_item, parent, false);
         Event e = getItem(position);
 
@@ -78,6 +78,7 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
         feed_EventName = (TextView) eventItemView.findViewById(R.id.feed_EventName);
         feed_EventDate = (TextView) eventItemView.findViewById(R.id.feed_EventDate);
         feed_EventTime = (TextView) eventItemView.findViewById(R.id.feed_EventTime);
+        categoryImage = (ImageView) eventItemView.findViewById(R.id.categoryImage);
 
         feed_EventName.setText(e.getEventName());
         feed_EventDate.setText(date);
@@ -86,6 +87,26 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
         feed_EventName.setTextColor(Color.WHITE);
         feed_EventDate.setTextColor(Color.WHITE);
         feed_EventTime.setTextColor(Color.WHITE);
+
+        String category = e.getCategory().toLowerCase();
+
+        categoryImage.setImageResource(R.drawable.social_icon);
+
+        switch (category){
+            case "social":
+                categoryImage.setImageResource(R.drawable.social_icon);
+                break;
+            case "networking":
+                categoryImage.setImageResource(R.drawable.networking_icon);
+                break;
+            case "community service":
+                categoryImage.setImageResource(R.drawable.community_services_icon);
+                break;
+            default:
+            categoryImage.setImageResource(R.drawable.logo);
+            break;
+        }
+
 
         return eventItemView;
     }

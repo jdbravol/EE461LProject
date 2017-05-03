@@ -99,7 +99,6 @@ public class StudentOptions extends AppCompatActivity {
     public static void updateUnderlyingEvents() {
         Log.d(TAG, "entering updateUnderlyingEvents()");
 
-        // TODO: Test searchMode to make sure feed doesn't change when a new event is added
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
             allEventList = Database.futureEvents(allEventList);

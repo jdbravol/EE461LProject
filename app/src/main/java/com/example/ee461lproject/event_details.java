@@ -3,11 +3,9 @@ package com.example.ee461lproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +31,7 @@ public class event_details extends AppCompatActivity {
         final Button rsvpButton = (Button) findViewById(R.id.rsvpButtonStudent);
 
         orgText.setText(event.getOrganizer());
-        dateText.setText(event.getDateString());
+        dateText.setText(event.constructDateString());
         locationText.setText(event.getLocation());
         descriptionText.setText(event.getDescription());
         title.setText(event.getEventName());

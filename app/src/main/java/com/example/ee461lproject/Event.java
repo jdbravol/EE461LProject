@@ -44,7 +44,7 @@ public class Event implements Comparable<Event>{
         this.date = date;
         this.location = location;
         this.description = description;
-        rsvpList = new HashMap<String, Boolean>();
+        this.rsvpList = new HashMap<String, Boolean>();
         this.freeFood = freeFood;
         this.category = category;
     }
@@ -199,7 +199,7 @@ public class Event implements Comparable<Event>{
         month = months[monthIndex] + ".";
     }
 
-    public String getDateString(){
+    public String constructDateString(){
         String[] dateFields = this.getDate().toString().split(" ");
         String time = "";
         String dayOfMonth = "";

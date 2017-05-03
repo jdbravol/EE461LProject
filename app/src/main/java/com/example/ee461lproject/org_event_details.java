@@ -1,22 +1,20 @@
 package com.example.ee461lproject;
 
-import android.content.Entity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.parceler.Parcels;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class org_event_details extends AppCompatActivity {
+
+    private static final String TAG = "org_event_details";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,7 @@ public class org_event_details extends AppCompatActivity {
 
         title.setText(event.getEventName());
         nameField.setText(event.getOrganizer());
-        dateField.setText(event.getDateString());
+        dateField.setText(event.constructDateString());
         locationField.setText(event.getLocation());
         descriptionText.setText(event.getDescription());
         categoryText.setText(event.getCategory());
@@ -57,6 +55,14 @@ public class org_event_details extends AppCompatActivity {
 
     private String getRsvpList(Event event){
         HashMap<String, Boolean> rsvpMap = event.getRsvpList();
+        Log.d(TAG, "org_event_details::getRsvpList -- rsvpMap ref value: " + rsvpMap);
+
+        // We need a null-check as an empty rsvp list on Firebase returns a null reference.
+        // (As opposed to an initialized, but non-null reference.)
+        if (rsvpMap == null) {
+            return "No one has RSVP'd.";
+        }
+
         String rsvpList = "";
         for (Map.Entry<String, Boolean> entry: rsvpMap.entrySet()) {
             rsvpList = rsvpList.concat(entry.getKey() + "\n");

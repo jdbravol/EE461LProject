@@ -90,6 +90,11 @@ public class Database{
         //push a new reference and set the value to the new event
         DatabaseReference newEventRef = eventsRef.push();
         event.setUniqueID(newEventRef.getKey());
+
+        // TODO: DO NOT DELETE
+        // Way too many things breaking in code without this line
+        event.getRsvpList().put(" ", true);
+
         newEventRef.setValue(event);
     }
 

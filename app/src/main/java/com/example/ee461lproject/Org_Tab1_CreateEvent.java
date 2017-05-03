@@ -163,6 +163,8 @@ public class Org_Tab1_CreateEvent extends Fragment {
         String eventDescriptionString = eventDescription.getText().toString().trim();
         String eventCategoryString = eventCategory.getText().toString().trim();
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         String orgName = user.getDisplayName();
         Date date = constructDate(eventDateString, eventTimeString);
         boolean freeFood = freeFoodCheckBox.isChecked();

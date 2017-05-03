@@ -119,7 +119,6 @@ public class StudentOptions extends AppCompatActivity {
     }
 
     public void filterAdapterByOrg(String orgName) {
-
         synchronized (mainFeedAdapterLock) {
             allEventList = Database.allEvents();
             Collections.sort(allEventList);
@@ -127,7 +126,6 @@ public class StudentOptions extends AppCompatActivity {
             mainFeedAdapter.addAll(Database.eventsByOrg(allEventList, orgName));
             mainFeedAdapter.notifyDataSetChanged();
         }
-
     }
 
     public void filterAdapterByEverythingElse(String cat, String date, boolean freeFood){

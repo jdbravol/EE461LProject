@@ -170,13 +170,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:ems="10"
+            android:focusable="false"
             android:fontFamily="sans-serif-smallcaps"
-            android:hint="Category"
+            android:hint="Users"
             android:inputType="textPersonName"
             android:paddingBottom="20dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:focusable="false"/>
+            tools:layout_editor_absoluteY="0dp" />
 
 
     </LinearLayout>

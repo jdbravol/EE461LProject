@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -89,7 +88,25 @@ class EventFeedAdapter extends ArrayAdapter<Event> {
         feed_EventDate.setTextColor(Color.WHITE);
         feed_EventTime.setTextColor(Color.WHITE);
 
+        String category = e.getCategory().toLowerCase();
+
         categoryImage.setImageResource(R.drawable.social_icon);
+
+        switch (category){
+            case "social":
+                categoryImage.setImageResource(R.drawable.social_icon);
+                break;
+            case "networking":
+                categoryImage.setImageResource(R.drawable.networking_icon);
+                break;
+            case "community service":
+                categoryImage.setImageResource(R.drawable.community_services_icon);
+                break;
+            default:
+            categoryImage.setImageResource(R.drawable.logo);
+            break;
+        }
+
 
         return eventItemView;
     }

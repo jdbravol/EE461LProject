@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -29,11 +31,11 @@ public class org_event_details extends AppCompatActivity {
         TextView locationField = (TextView) findViewById(R.id.locationFieldOrg);
         TextView descriptionText = (TextView) findViewById(R.id.descriptionFieldOrg);
         TextView categoryText = (TextView) findViewById(R.id.categoryFieldOrg);
+        Button deleteButton = (Button) findViewById(R.id.deleteButton);
 
         // TODO: Replace rsvpField w/ multi-line text box in layout
         // Currently, it's not displaying users on their own line
         TextView rsvpField = (TextView) findViewById(R.id.rsvpFieldOrg);
-
         CheckBox freeFood = (CheckBox) findViewById(R.id.freeFoodOrg);
 
         title.setText(event.getEventName());
@@ -49,8 +51,19 @@ public class org_event_details extends AppCompatActivity {
             freeFood.setChecked(false);
         }
         String RSVPlist = getRsvpList(event);
-
         rsvpField.setText(RSVPlist);
+
+        //delete the event
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Database.deleteEvent(event);
+                OrganizationOptions.updateUnderlyingEvents(event.getOrganizer());
+                Intent orgOptions = new Intent(org_event_details.this, OrganizationOptions.class);
+                startActivity(orgOptions);
+                org_event_details.this.finish();
+            }
+        });
     }
 
     private String getRsvpList(Event event){

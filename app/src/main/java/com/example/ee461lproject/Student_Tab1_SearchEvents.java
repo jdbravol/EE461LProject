@@ -48,6 +48,7 @@ public class Student_Tab1_SearchEvents extends Fragment {
         final Button goButtonOrgName = (Button) rootView.findViewById(R.id.goButtonOrgName);
         final Button goEverythingElseButton = (Button) rootView.findViewById(R.id.goButtonEverythingElse);
         final CheckBox freeFoodBox = (CheckBox) rootView.findViewById(R.id.checkBox);
+
         //add functionality to each object
         dateField.setOnClickListener(new View.OnClickListener() {
             @Override

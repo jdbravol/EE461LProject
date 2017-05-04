@@ -30,7 +30,7 @@
             android:layout_marginRight="15dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Event Name"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/feed_EventDate"
@@ -40,7 +40,7 @@
             android:layout_marginRight="15dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="DD/MM/YYYY"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/feed_EventTime"
@@ -50,7 +50,7 @@
             android:layout_marginRight="15dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="HH:MM"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

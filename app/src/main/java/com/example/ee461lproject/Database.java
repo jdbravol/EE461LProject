@@ -185,11 +185,12 @@ public class Database{
      */
     public static ArrayList<Event> eventsByOrg(ArrayList<Event> origEvents, String org){
         synchronized (eventsWriteLock) {
+            org = org.toLowerCase();
             Date currentDate = new Date();
             ArrayList<Event> eventsByOrg = new ArrayList<Event>();
 
             for(Event e : origEvents){
-                if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer())){
+                if(e.getDate().compareTo(currentDate)>= 0 && org.equals(e.getOrganizer().toLowerCase())){
                     eventsByOrg.add(e);
                 }
             }
@@ -246,7 +247,7 @@ public class Database{
             ArrayList<Event> catEvents = new ArrayList<Event>();
 
             for(Event e : origEvents){
-                if(e.getCategory().equals(category)){
+                if(e.getCategory().toLowerCase().equals(category.toLowerCase())){
                     catEvents.add(e);
                 }
             }

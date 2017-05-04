@@ -73,6 +73,7 @@ public class Settings extends AppCompatActivity {
                                                 "Password updated succesfully!",
                                                 Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "User password updated.");
+                                        logOut();
                                     }
                                 }
                             });
@@ -87,7 +88,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // TODO: Fix issue with changing display names
         // If a display name is changed, the events associated with that org account are not
         // updated. After changing a display name, logging out then logging back in wipes an
         // org's feed.
@@ -97,13 +97,35 @@ public class Settings extends AppCompatActivity {
                 String newName = newNameField.getText().toString();
                 if (!newName.equals("")) {
                     FirebaseUser user = mAuth.getCurrentUser();
+                    String old =  user.getDisplayName();
                     UserProfileChangeRequest.Builder requestBuilder = new UserProfileChangeRequest.Builder();
                     requestBuilder.setDisplayName(newName);
                     UserProfileChangeRequest request = requestBuilder.build();
                     user.updateProfile(request);
+                    if(Database.getUserType(user.getUid()).equals("Organization")){
+                        ArrayList<Event> allEvents = Database.allEvents();
+                        for(Event e : allEvents){
+                            if(e.getOrganizer().equals(old)){
+                                e.setOrganizer(newName);
+                                Database.updateEvent(e);
+                            }
+                        }
+                    }
+                    else if (Database.getUserType(user.getUid()).equals("Student")){
+                        ArrayList<Event> allEvents = Database.allEvents();
+                        for(Event e : allEvents){
+                            if(e.isInRSVPList(old)){
+                                Log.d(TAG, "Removing" + old + " adding " + newName);
+                                e.removeOfRSVP(old);
+                                e.addToRSVP(newName);
+                                Database.updateEvent(e);
+                            }
+                        }
+                    }
                     Toast.makeText(Settings.this,
-                            "Updated name successfully -- " + user.getDisplayName(),
+                            "Updated name successfully",
                             Toast.LENGTH_SHORT).show();
+                    logOut();
                 } else {
                     Toast.makeText(Settings.this,
                             "Please write a new display name.",
@@ -199,4 +221,10 @@ public class Settings extends AppCompatActivity {
         startActivity(userOptionsIntent);
     }
 
+    private void logOut(){
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
+        this.finish();
+
+    }
 }

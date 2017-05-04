@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class OrganizationOptions extends AppCompatActivity {
 
@@ -37,10 +38,10 @@ public class OrganizationOptions extends AppCompatActivity {
     private ViewPager mViewPager;
 
     private static final String TAG = "OrgOptions";
-    public static ArrayList<Event> underlyingOrgEvents = Database.allEvents();
+    public static ArrayList<Event> underlyingOrgEvents;
     public static Context context;
     public static EventFeedAdapter eventFeedAdapter;
-    public FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
@@ -48,8 +49,11 @@ public class OrganizationOptions extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_options);
-        OrganizationOptions.context = getApplicationContext();
+        underlyingOrgEvents = Database.allEvents();
+        Collections.sort(underlyingOrgEvents);
 
+        OrganizationOptions.context = getApplicationContext();
+        FirebaseUser user = mAuth.getInstance().getCurrentUser();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,6 +78,7 @@ public class OrganizationOptions extends AppCompatActivity {
 
         ArrayList<Event> allEvents = Database.allEvents();
         underlyingOrgEvents = Database.eventsByOrg(allEvents, orgName);
+        Collections.sort(underlyingOrgEvents);
         eventFeedAdapter.clear();
         eventFeedAdapter.addAll(underlyingOrgEvents);
         eventFeedAdapter.notifyDataSetChanged();
